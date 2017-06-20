@@ -1,0 +1,13 @@
+voir design of networks
+voir parcours de graphe
+voir design de paragraphe
+
+data structures : 
+		-buffers circulaires pour chaque client, 
+		-table de hash pour clients references,
+		-stack de commandes a traiter
+		-(ast pour execution des commandes)
+		-table de hash pour channels
+
+daemonization du server
+shell du client

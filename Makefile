@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	ft_nm ft_otool
+NAME		=	server client
 
-CC			=	gcc
+CC		=	gcc
 FLAGS		=	-Wall -Wextra -Werror
 D_FLAGS		=	
 
@@ -27,25 +27,18 @@ SRC_DIR		=	src/
 INC_DIR		=	includes/
 OBJ_DIR		=	objs/
 
-NM_OBJ		=	$(OBJ_DIR)nm.o
-OTOOL_OBJ	=	$(OBJ_DIR)otool.o
+SERV_OBJ	=	$(OBJ_DIR)server.o
+CLI_OBJ		=	$(OBJ_DIR)client.o
 
 SRC_BASE	=	\
-handle_32.c\
-handle_64.c\
-handle_fat.c\
-nm.c\
-otool.c\
-ft_hexdump.c\
-parse_sections.c\
-parse_symtab.c\
-print_sym.c\
-symtab_sort.c
+client.c\
+daemon.c\
+server.c
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS		=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
-OBJS		:=	$(filter-out $(NM_OBJ), $(OBJS))
-OBJS		:=	$(filter-out $(OTOOL_OBJ), $(OBJS))
+OBJS		:=	$(filter-out $(SERV_OBJ), $(OBJS))
+OBJS		:=	$(filter-out $(CLI_OBJ), $(OBJS))
 NB			=	$(words $(SRC_BASE))
 INDEX		=	0
 
@@ -53,18 +46,18 @@ all :
 	@make -C $(LIBFT_DIR)
 	@make -j $(NAME)
 
-ft_nm : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(NM_OBJ)
+server : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(SERV_OBJ)
 	@$(CC) $(OBJS) -o $@ \
 		-I $(INC_DIR) \
 		-I $(LIBFT_INC) \
-		$(LIBS) $(LIBFT_LIB) $(NM_OBJ) $(FLAGS)
+		$(LIBS) $(LIBFT_LIB) $(SERV_OBJ) $(FLAGS)
 	@printf "\r\033[48;5;15;38;5;25m✅ MAKE $@ \033[0m\033[K\n"
 
-ft_otool : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(OTOOL_OBJ)
+client : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(CLI_OBJ)
 	@$(CC) $(OBJS) -o $@ \
 		-I $(INC_DIR) \
 		-I $(LIBFT_INC) \
-		$(LIBS) $(LIBFT_LIB) $(OTOOL_OBJ) $(FLAGS)
+		$(LIBS) $(LIBFT_LIB) $(CLI_OBJ) $(FLAGS)
 	@printf "\r\033[48;5;15;38;5;25m✅ MAKE $@ \033[0m\033[K\n"
 
 

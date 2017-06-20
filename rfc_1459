@@ -1,0 +1,33 @@
+Servers : spanning tree, acyclic graph, each server as central node
+
+Client : nickname id : 9 characters, real name of the host, username of the client on that host and the server on which the client is connected
+
+Operators : special powers on servers and special power on user, KILL user from networks
+
+Channel : -named group of clients who will all receive messages addressed to that channel, creates with the first, ceases to exist with the last client
+	begining with & ou #, no spaces, ASCII 7 or comma
+	-distributed channel and local channel
+	- JOIN, create as operator if first
+	- MODE of the channel
+	- in case of split, indepence of clients, in case of healing, communication on exclusive channels then inclusive channels
+	
+Channels operaotrs : owners of the channels, KICK, MODE, INVITE, TOPIC, got a @ with their names
+
+Spec protocols : 8 bits, {} |, [], \
+	-message : prefix, command, parameters, separate by one or more ASCII space characters
+		-prefix : begin by ':' which must be the first character of the message itself, ignore in case of no identification
+		-end : CR-LF, valid IRC command or 3 digit number in ascii text, 512 characters in length with end, including parameters
+
+	BNF : representation
+	- numeric replies for stand messages and error anwsers, not allowed by C4S
+
+IRC concepts :
+	- one-to-one communication : shortest path in the spanning tree
+	- one-to-many :
+		- to a list : list of destinations, breaks it up, don t check if arrived
+		- to a channel : sent to server, then to all clients, channel dynamic existence	
+		- host/server mask : sent to clients matching the mask
+	- one-to-all : consistent information
+	- client-to-server : none
+	- client-to-server : state information sent to all servers by default
+	- server-to-server : user, channel, server
