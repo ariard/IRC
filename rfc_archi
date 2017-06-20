@@ -1,0 +1,45 @@
+consistency/availability/paritition tolerance
+
+- global state information (conflict in state information)
+
+Architecture:
+	- servers : connec to all, shell of services
+	- user clients : basic users
+	- service clients : can have acces to private data, automatons to provide some kind of a service
+
+IRC services:
+	- client locator ("/who")
+	- message relaying ("/msg <nick> <message>")
+	- channel hosting and management ("/join <chan>, /leave <channel>)
+		channel : name and current members, properties
+
+1-to-1:
+	- shortest past between any two points on the spanning tree (lem-in)
+
+to-a-channel:
+	- message must only by sent to servers wich are supporting users on a given channel
+	("channels" as 1-to-1 message)
+
+to-a-host/server mask:
+	- reference by locations
+
+to-a-list:
+	- set of [clients, channels, mask]
+
+c2c:
+	- don t exist
+
+
+c2s:
+	- change in state information must be sent to all servers
+
+s2s:
+	- affection of user, channel or server
+
+scalibilty : problems of updating infos
+
+reliability : each link is a point of failure
+
+network congestion : congestion fail causes more traffic at reconnection, temporize
+
+privacy : a concern

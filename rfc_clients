@@ -1,0 +1,73 @@
+servers:
+	- name 63 characters max
+
+clients:
+	-netwide unique identifier
+	- server
+
+users:
+	- unique 9 characters nickname
+
+operators:
+	- operators only to perform some admin functions (SQUIT, CONNECT, KILL)
+
+services:
+	- unique 9 characters
+
+channels:
+	- 50 characters, '&', '#', '+', '!', shall not contain space, ascii 7 or comma, case insensitive
+
+character code:
+	- {}|^ == lowercase []\~
+
+messages:
+	- prefix, command and max 15 parameters, each separated by one ASCII space character
+	- prefix begin by ':', true origin of the message, by default from connection, client can't use prefix
+	- valid IRC command or 3 digit ASCII text
+	- ended by a CR-LF, max 512 characters
+
+message format in BNF:
+	(circular buffer as support for messages)
+	(push message if syntax valid)
+
+numeric replies:
+	- sender prefix, 3digit numeric and target of the reply
+
+wildcard expressions:
+	- fucking '?' and '*' (regex motor)
+
+message details :
+	- definitive ERR_NOSCUHSERVER
+	- number of replies for list item
+	- each parameter must be check for validity
+	
+-connection registration:
+	- PASS required for Nick and Service message
+	- RPL_WELCOME or RPL_YOURSERVICE with full client identifier
+
+-channel operations:
+	- must reply
+	- forbid services to use them
+
+-sending messages:
+	-reliable and structured manner
+
+-server queries:
+	- forbid services to use them
+
+-services query:
+	- return information about any service which is connected
+
+-miscellaneous message:
+	- REQUIRED by the protocol
+
+--optional features:
+	- an error reply message MUST be generated
+	- must be passed to the server
+
+Replies:
+	- 001 - 099, client-server connections only
+	- 200 - 399 - replies generated in response to commands
+
+Nicknames:
+	- kill the same or don't succed

@@ -11,3 +11,19 @@ data structures :
 
 daemonization du server
 shell du client
+
+
+3 servers codes / server_services codes / clients
+
+to-do :
+ - init servers
+ - clients locations configuration
+ - parsing messages (circular buffer), stack of commands
+ - sending messages between two clients
+ - minimal clients shell
+
+ - connect server-to-server, check if disconnect (PASS, SERVER)
+ - align global state information (SERVER, NICK)
+ - passing informations from c2c on different servers (routing algorithms)
+
+

@@ -36,14 +36,20 @@ int		create_client(char *addr, int port)
 
 int		main(int ac, char **av)
 {
-	int						port;
-	int						sock;
+	int				port;
+	int				sock;
+	int				c;
 	
 	if (ac != 3)
 		usage(av[0]);
 	port = atoi(av[2]);	
 	sock = create_client(av[1], port);
-	write(sock, "bonjour\n", 8);
+	c = '\0';
+	while (1)
+	{
+		read(0, &c, 1);
+		write(sock, &c, 1);
+	}
 	close(sock);
 	return (0);
 }

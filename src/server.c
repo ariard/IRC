@@ -32,28 +32,26 @@ int		main(int argc, char **argv)
 {
 	int			port;
 	int			sock;
-	int 			cs;
-	unsigned int		cslen;
-	struct sockaddr_in	csin;
-	int			r;
-	char			buf[1024];
 	int			fd;
 
 	if (argc != 2)
 		ft_usage("ircd: addr port");
-	if (daemonize())
-		ft_usage("ircd: failed daemonization %d");
+//	if (daemonize())
+//		ft_usage("ircd: failed daemonization %d");
 	DG("daemonization successful : %d", getpid());
 	port = ft_atoi(argv[1]);
 	sock = gen_server(port);
-	cs = accept(sock, (struct sockaddr *)&csin, &cslen);
 	fd = open("/tmp/.irc_report", O_CREAT | O_WRONLY, 0644);
-	while ((r = read(cs, buf, 1023)) > 0)
+//	cs = accept(sock, (struct sockaddr *)&csin, &cslen);
+	server_loop(fd, sock);
+	close(sock);
+	return (0);
+}
+
+
+/* 	while ((r = read(cs, buf, 1023)) > 0)
 	{
 		buf[r] ='\0';
 		write(fd, buf, ft_strlen(buf));
 	}
-	close(cs);
-	close(sock);
-	return (0);
-}
+*/

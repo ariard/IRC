@@ -1,0 +1,69 @@
+"global state database"
+
+servers:
+	- hostmask area, virtual server for outside server (creation of a special server)
+
+messages
+	- must identify the source, if not identify, discard
+	- false identification, KILL client 
+
+channel operations:
+	- servers keep a nickname history to ensure the recent changed
+	- channel creators and channel operators
+
+connection 'Liveness':
+	- MUST poll each of its connection, PING command, no response, close connection
+	
+accepting a client:
+	- standard welcome
+	- MUST take advantage of the extended NICK message	
+
+services:
+	- MUST send out the new service's nickname and other informations
+
+establishing a server-server connection:
+	- PASS/SERVER then PASS/SERVER back
+
+compressed server-2-server links:
+	- data format for compression 'Z'
+
+anti-abuse protections:
+	- all links protected 'P'
+
+state information when connecting:
+	- all known servers (extra SERVER messages)
+	- all known client information (NICK/SERVICE messages)
+	- all kown channel information (NJOIN/MODE messages)
+	- indicate split due to collision
+
+terminating server-client connections:
+	- unexpected connection, QUIT message is generated
+
+terminating server-server connections:
+	- send a SQUIT message for all servers far from the link
+
+tracking nicknames changes:
+	- history of recent nickname changes for KILL, MODE and KICK commands
+	- list of all nicknames for known clients
+	
+tracking recently used nicknames:
+	- unavailable to the server local clients
+	- duration for unavailable
+
+flood control of clients:
+	- with timers, if timers clients less, read, than add two seconds
+
+non-blocking lookups:
+	- timeout disk reads
+
+hostname lookups:
+
+username lookups
+
+labels: unique nickname, channel name, server name and service name
+
+channels:
+	- inclusion
+
+
+

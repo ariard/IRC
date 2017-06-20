@@ -33,6 +33,7 @@ CLI_OBJ		=	$(OBJ_DIR)client.o
 SRC_BASE	=	\
 client.c\
 daemon.c\
+loop.c\
 server.c
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
