@@ -6,11 +6,11 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 00:35:24 by ariard            #+#    #+#              #
-#    Updated: 2017/05/21 16:19:55 by ariard           ###   ########.fr        #
+#    Updated: 2017/06/21 15:58:54 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	server client
+NAME		=	ircd client
 
 CC		=	gcc
 FLAGS		=	-Wall -Wextra -Werror
@@ -48,7 +48,7 @@ all :
 	@make -C $(LIBFT_DIR)
 	@make -j $(NAME)
 
-server : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(SERV_OBJ)
+ircd : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(SERV_OBJ)
 	@$(CC) $(OBJS) -o $@ \
 		-I $(INC_DIR) \
 		-I $(LIBFT_INC) \

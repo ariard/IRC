@@ -17,7 +17,7 @@
 
 /* Class of Users */
 
-# define REGULAR	1 << 0
+# define CLIENT		1 << 0
 # define OPERATOR	1 << 1
 # define SERVICE	1 << 2
 
@@ -36,6 +36,7 @@ typedef struct s_channel		t_channel;
 
 struct s_client
 {
+	int		socket;
 	int		uid;
 	char	*server;
 	char	type;
@@ -68,11 +69,17 @@ typedef struct s_server			t_server;
 
 int		daemonize(void);
 
-void	server_loop(int dest, int s_sock);
+void	server_loop(int dest, int s_sock, t_server *server);
 
 void	init_serv(char *name, t_server *server);
 
+void	manage_sockets(int dest, int s_sock, int *maxfd, fd_set *allset, t_server *server);
 
+void	execute_cmds(void);
+
+void	client_init(t_client *client, int clifd);
+
+int		client_cmp(void *content1, void *content2);
 
 #endif
 

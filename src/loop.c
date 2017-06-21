@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loop.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/21 17:04:00 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/21 17:04:15 by ariard           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "irc.h"
 
-int		serv_accept(int s_sock)
+/*int		serv_accept(int s_sock)
 {
 	int					cs;
 	unsigned int		len;
@@ -72,5 +84,21 @@ void	server_loop(int dest, int s_sock)
 					write(dest, buf, nread);
 			}
 		}
+	}
+}*/
+
+void	server_loop(int dest, int s_sock, t_server *server)
+{	
+	fd_set	allset;
+	int		maxfd;
+
+	FD_ZERO(&allset);
+	FD_SET(s_sock, &allset);
+	index = 0;
+	maxfd = s_sock;
+	while (1)
+	{
+		manage_sockets(dest, s_sock, &maxfd, &allset, server);
+		execute_cmds();
 	}
 }
