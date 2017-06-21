@@ -27,3 +27,8 @@ to-do :
  - passing informations from c2c on different servers (routing algorithms)
 
 
+
+client-server errors, conversation level:
+	- envoi partielle ou incomplet
+	- mauvaise connection (how to provoke)
+	- client deconnecte

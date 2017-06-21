@@ -6,7 +6,7 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 17:04:00 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/21 17:04:15 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/21 19:35:23 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	server_loop(int dest, int s_sock, t_server *server)
 
 	FD_ZERO(&allset);
 	FD_SET(s_sock, &allset);
-	index = 0;
 	maxfd = s_sock;
 	while (1)
 	{

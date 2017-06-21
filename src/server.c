@@ -37,14 +37,14 @@ int		main(int argc, char **argv)
 
 	if (argc < 2)
 		ft_usage("ircd: port servername");
-	if (daemonize())
-		ft_usage("ircd: failed daemonization %d");
+//	if (daemonize())
+//		ft_usage("ircd: failed daemonization %d");
 	init_serv(argv[2], &server);
 	DG("daemonization successful : %d", getpid());
 	port = ft_atoi(argv[1]);
 	sock = gen_server(port);
 	fd = open("/tmp/.irc_report", O_CREAT | O_WRONLY, 0644);
-	server_loop(fd, sock, server);
+	server_loop(fd, sock, &server);
 	close(sock);
 	return (0);
 }

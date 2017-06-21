@@ -1,10 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <unistd.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/21 20:47:31 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/21 20:47:33 by ariard           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "irc.h"
 
 void	usage(char *str)
 {
@@ -12,7 +18,7 @@ void	usage(char *str)
 	exit(-1);
 }
 
-int		create_client(char *addr, int port)
+int		gen_client(char *addr, int port)
 {
 	int					sock;
 	struct protoent		*proto;	
@@ -39,16 +45,22 @@ int		main(int ac, char **av)
 	int				port;
 	int				sock;
 	int				c;
+	int				nread;
+	char			buf[1024];
 	
 	if (ac != 3)
 		usage(av[0]);
 	port = atoi(av[2]);	
-	sock = create_client(av[1], port);
+	sock = gen_client(av[1], port);
 	c = '\0';
+	ft_bzero(buf, 1024);
 	while (1)
 	{
 		read(0, &c, 1);
 		write(sock, &c, 1);
+		nread = read(sock, buf, 1024);
+		if (nread > 0)
+			write(1, buf, 1024);
 	}
 	close(sock);
 	return (0);

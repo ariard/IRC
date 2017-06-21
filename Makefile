@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 00:35:24 by ariard            #+#    #+#              #
-#    Updated: 2017/06/21 15:58:54 by ariard           ###   ########.fr        #
+#    Updated: 2017/06/21 19:00:02 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,16 @@ CLI_OBJ		=	$(OBJ_DIR)client.o
 SRC_BASE	=	\
 client.c\
 daemon.c\
+database/client_cmp.c\
+database/client_init.c\
+database/client_print.c\
+execute.c\
 init_server.c\
 loop.c\
+serv/accept_cli.c\
+serv/read_sockets.c\
+serv/sockets.c\
+serv/write_sockets.c\
 server.c
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
@@ -49,14 +57,14 @@ all :
 	@make -j $(NAME)
 
 ircd : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(SERV_OBJ)
-	@$(CC) $(OBJS) -o $@ \
+	@ $(CC) $(OBJS) -o $@ \
 		-I $(INC_DIR) \
 		-I $(LIBFT_INC) \
 		$(LIBS) $(LIBFT_LIB) $(SERV_OBJ) $(FLAGS)
 	@printf "\r\033[48;5;15;38;5;25m✅ MAKE $@ \033[0m\033[K\n"
 
 client : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(CLI_OBJ)
-	@$(CC) $(OBJS) -o $@ \
+	@ $(CC) $(OBJS) -o $@ \
 		-I $(INC_DIR) \
 		-I $(LIBFT_INC) \
 		$(LIBS) $(LIBFT_LIB) $(CLI_OBJ) $(FLAGS)
