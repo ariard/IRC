@@ -32,6 +32,7 @@ void	server_loop(int dest, int s_sock)
 	ft_bzero(client, 1024);
 	index = 0;
 
+	DG("loop");
 	while (1)
 	{
 		rset = allset;
@@ -39,6 +40,7 @@ void	server_loop(int dest, int s_sock)
 			write(dest, "select error", 12);
 		if (FD_ISSET(s_sock, &rset))
 		{
+			DG("incoming connection");
 			if ((clifd = serv_accept(s_sock)) < 0)
 				write(dest, "server accept error", 18);
 			client[index] = clifd;

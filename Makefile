@@ -33,6 +33,7 @@ CLI_OBJ		=	$(OBJ_DIR)client.o
 SRC_BASE	=	\
 client.c\
 daemon.c\
+init_server.c\
 loop.c\
 server.c
 

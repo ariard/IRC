@@ -33,25 +33,23 @@ int		main(int argc, char **argv)
 	int			port;
 	int			sock;
 	int			fd;
+	t_server		server;	
+	int					cs;
+	unsigned int		len;
+	struct sockaddr_in	csin;
 
-	if (argc != 2)
-		ft_usage("ircd: addr port");
+	if (argc < 3)
+		ft_usage("ircd: addr port servername");
 //	if (daemonize())
 //		ft_usage("ircd: failed daemonization %d");
+	init_serv(argv[3], &server);
 	DG("daemonization successful : %d", getpid());
 	port = ft_atoi(argv[1]);
 	sock = gen_server(port);
 	fd = open("/tmp/.irc_report", O_CREAT | O_WRONLY, 0644);
-//	cs = accept(sock, (struct sockaddr *)&csin, &cslen);
-	server_loop(fd, sock);
+	cs = accept(sock, (struct sockaddr *)&csin, &len);
+	while(1);
+//	server_loop(fd, sock);
 	close(sock);
 	return (0);
 }
-
-
-/* 	while ((r = read(cs, buf, 1023)) > 0)
-	{
-		buf[r] ='\0';
-		write(fd, buf, ft_strlen(buf));
-	}
-*/

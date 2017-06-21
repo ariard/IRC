@@ -54,13 +54,13 @@ struct s_user
 
 typedef struct s_user			t_user;
 
-struct s_server;
+struct s_server
 {
 	char		name[64];
-	char		*hostmask;
-	t_hashtab	*clients;
-	t_hashtab	*channels;
-	t_hashtab	*server;
+//	char		*hostmask;
+	t_hashtab	clients;
+	t_hashtab	channels;
+	t_hashtab	servers;
 //	servers topos
 };
 
@@ -69,6 +69,8 @@ typedef struct s_server			t_server;
 int		daemonize(void);
 
 void	server_loop(int dest, int s_sock);
+
+void	init_serv(char *name, t_server *server);
 
 
 
