@@ -40,6 +40,7 @@ execute.c\
 init_server.c\
 loop.c\
 serv/accept_cli.c\
+serv/cirbuf_read.c\
 serv/read_sockets.c\
 serv/sockets.c\
 serv/write_sockets.c\

@@ -19,6 +19,8 @@ to-do :
  - init servers
  - clients locations configuration
  - parsing messages (circular buffer), stack of commands
+ - layer identification between server-clients, generate user struct
+
  - sending messages between two clients
  - minimal clients shell
 
@@ -32,3 +34,11 @@ client-server errors, conversation level:
 	- envoi partielle ou incomplet
 	- mauvaise connection (how to provoke)
 	- client deconnecte
+
+
+2 layers object :
+	- obj client
+
+-core servers 
+-servers tools
+-database

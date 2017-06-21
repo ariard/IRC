@@ -25,6 +25,8 @@
 
 /* Server side */
 
+# define RDBUFSIZE	2048
+
 struct s_channel
 {
 	char	name[51];
@@ -43,6 +45,8 @@ struct s_client
 	char	type;
 	char	*wrbuf;
 	int		wrindex;
+	char	*rdbuf;
+	int		rdindex;
 };
 
 typedef struct s_client			t_client;
@@ -65,10 +69,18 @@ struct s_server
 	t_hashtab	clients;
 	t_hashtab	channels;
 	t_hashtab	servers;
-//	servers topos
+	t_list		*cmds;
 };
 
 typedef struct s_server			t_server;
+
+struct s_cmd
+{
+	char	prio;
+	char	*msg;
+};
+
+typedef struct s_cmd			t_cmd;
 
 int		daemonize(void);
 
@@ -91,6 +103,8 @@ void	accept_cli(fd_set *allset, int sock, int *maxfd, t_server *server);
 void	read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest);
 
 void	write_sockets(fd_set *wset, fd_set *allset, t_server *server);
+
+int		cirbuf_read(int fd, char *cirbuf, int size, int *index);
 
 #endif
 

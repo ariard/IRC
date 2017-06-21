@@ -6,7 +6,7 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 20:21:34 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/21 20:30:05 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/21 21:45:15 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void		read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest)
 		DG("reading client socket is %d", client->socket);
 		if (FD_ISSET(client->socket, rset))
 		{
-			ft_bzero(buf, 1024);
-			if ((nread = read(client->socket, buf, 1024)) < 0)
+			if ((nread = cirbuf_read(client->socket, client->rdbuf, 513,
+				&client->rdindex)) < 0)
 				ft_usage("read client error");
 			else if (nread == 0)
 			{

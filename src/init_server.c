@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_server.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/21 21:11:10 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/21 21:17:41 by ariard           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "irc.h"
 
 void	init_serv(char *name, t_server *server)
@@ -9,4 +21,5 @@ void	init_serv(char *name, t_server *server)
 	hashtab_init(&server->clients, 200, &ft_hash_string);
 	hashtab_init(&server->channels, 200, &ft_hash_string);
 	hashtab_init(&server->servers, 200, &ft_hash_string);
+	server->cmds = NULL;
 }
