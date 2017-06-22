@@ -6,7 +6,7 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 20:20:52 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/21 20:57:02 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/22 17:40:54 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void		write_sockets(fd_set *wset, fd_set *allset, t_server *server)
 	t_list		*elem;
 	t_client	*client;
 
-	hashtab_generator(&server->clients, 1);
-	while ((elem = hashtab_generator(&server->clients, 0)))
+	hashtab_iterator(&server->clients, 1);
+	while ((elem = hashtab_iterator(&server->clients, 0)))
 	{
 		client = (t_client *)elem->content;
-		DG("writing client socket is %d", client->socket);
+//		DG("writing client socket is %d", client->socket);
 		if (FD_ISSET(client->socket, wset) && ft_strlen(client->wrbuf))
 		{
 			if ((nread = write(client->socket, client->wrbuf,

@@ -6,7 +6,7 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 20:47:31 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/21 20:47:33 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/22 18:32:39 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		main(int ac, char **av)
 	int				port;
 	int				sock;
 	int				c;
-	int				nread;
+//	int				nread;
 	char			buf[1024];
 	
 	if (ac != 3)
@@ -58,9 +58,9 @@ int		main(int ac, char **av)
 	{
 		read(0, &c, 1);
 		write(sock, &c, 1);
-		nread = read(sock, buf, 1024);
-		if (nread > 0)
-			write(1, buf, 1024);
+//		nread = read(sock, buf, 1024);
+//		if (nread > 0)
+//			write(1, buf, 1024);
 	}
 	close(sock);
 	return (0);

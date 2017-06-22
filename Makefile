@@ -6,14 +6,14 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 00:35:24 by ariard            #+#    #+#              #
-#    Updated: 2017/06/21 19:00:02 by ariard           ###   ########.fr        #
+#    Updated: 2017/06/22 19:51:00 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	ircd client
 
 CC		=	gcc
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
 D_FLAGS		=	
 
 DELTA		=	$$(echo "$$(tput cols)-47"|bc)
@@ -34,8 +34,10 @@ SRC_BASE	=	\
 client.c\
 daemon.c\
 database/client_cmp.c\
+database/client_destroy.c\
 database/client_init.c\
 database/client_print.c\
+debug/print_bucket.c\
 execute.c\
 init_server.c\
 loop.c\

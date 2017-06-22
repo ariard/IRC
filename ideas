@@ -34,6 +34,7 @@ client-server errors, conversation level:
 	- envoi partielle ou incomplet
 	- mauvaise connection (how to provoke)
 	- client deconnecte
+	- connection non etablie
 
 
 2 layers object :

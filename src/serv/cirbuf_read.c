@@ -6,7 +6,7 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 21:18:47 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/21 21:45:11 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/22 16:55:06 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			cirbuf_read(int fd, char *cirbuf, int size, int *index)
 	char	buf[size + 1];
 	int		nread;
 
-	nread = read(fd, buf, size);
+	nread = read(fd, buf, 1024);
 	if (nread + *index >= RDBUFSIZE)
 	{
 		ft_memcpy(&cirbuf[*index], buf, RDBUFSIZE - *index);

@@ -98,6 +98,8 @@ int		client_cmp(const void *content1, const void *content2);
 
 int		client_print(void *content);
 
+void	client_destroy(void *content, size_t content_size);
+
 void	accept_cli(fd_set *allset, int sock, int *maxfd, t_server *server);
 
 void	read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest);
@@ -105,6 +107,8 @@ void	read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest);
 void	write_sockets(fd_set *wset, fd_set *allset, t_server *server);
 
 int		cirbuf_read(int fd, char *cirbuf, int size, int *index);
+
+int		print_bucket(void *content, void *data);
 
 #endif
 

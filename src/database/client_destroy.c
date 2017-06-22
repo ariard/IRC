@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_init.c                                      :+:      :+:    :+:   */
+/*   client_destroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/21 17:04:54 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/22 21:38:21 by ariard           ###   ########.fr       */
+/*   Created: 2017/06/22 16:56:51 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/22 20:16:06 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "irc.h"
 
-void		client_init(t_client *client, int clifd, char *servername)
+void		client_destroy(void *content, size_t content_size)
 {
-	struct timeval tp;
+	t_client	*client;
 
-	gettimeofday(&tp, NULL);
-	client->uid = ft_itoa(tp.tv_sec);
-	client->server = servername;
-	client->socket = clifd;	
-	client->type = CLIENT;
-	client->wrbuf = ft_memalloc(sizeof(char) * 1024);
+	(void)content_size;
+	client = (t_client *)content;
+	ft_strdel(&client->uid);
+	client->server = NULL;
+	close(client->socket);
+	client->socket = 0;
+	client->type = 0;
+	ft_strdel(&client->wrbuf);
 	client->wrindex = 0;
-	client->rdbuf = ft_memalloc(sizeof(char) * RDBUFSIZE);
+	ft_strdel(&client->rdbuf);
 	client->rdindex = 0;
 }
