@@ -1,0 +1,6 @@
+# IRC #
+
+layer one :
+	- connectivite
+	- multiclients et effacement base
+	- envoi et recuperation de cmds

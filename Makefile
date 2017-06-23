@@ -39,6 +39,7 @@ database/client_destroy.c\
 database/client_init.c\
 database/client_print.c\
 debug/print_bucket.c\
+debug/print_cmds.c\
 execute.c\
 init_server.c\
 loop.c\

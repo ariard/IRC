@@ -6,7 +6,7 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 20:21:34 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/23 18:14:04 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/23 18:27:34 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest)
 			{
 //				write(dest, buf, nread);
 				DG("rd: %s", client->rdbuf);
-//				first_parse(client->rdbuf, &client->rdindex, server);
+				first_parse(client->rdbuf, client->rdindex, server);
 			}
 		}
 	}

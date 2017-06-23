@@ -6,7 +6,7 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/23 15:34:23 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/23 18:01:34 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/23 19:00:05 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	init_serv(char *name, t_server *server);
 
 void	manage_sockets(int dest, int s_sock, int *maxfd, fd_set *allset, t_server *server);
 
-void	execute_cmds(void);
+void	execute_cmds(t_server *server);
 
 void	accept_cli(fd_set *allset, int sock, int *maxfd, t_server *server);
 
@@ -102,9 +102,13 @@ void	write_sockets(fd_set *wset, fd_set *allset, t_server *server);
 
 int		cirbuf_read(int fd, char *cirbuf, int size, int *index);
 
-void	first_parse(char *buffer, int *index, t_server *server);
+void	first_parse(char *buffer, int index, t_server *server);
+
+/* Debug */
 
 int		print_bucket(void *content, void *data);
+
+int		print_cmds(void *content, void *data);
 
 #endif
 
