@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   irc.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/23 15:34:23 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/23 18:01:34 by ariard           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef IRC_H
 #define IRC_H
 
@@ -16,6 +28,9 @@
 # include <sys/select.h>
 # include <sys/time.h>
 
+# include "database.h"
+# include "cli.h"
+
 /* Class of Users */
 
 # define CLIENT		1 << 0
@@ -25,7 +40,7 @@
 
 /* Server side */
 
-# define RDBUFSIZE	2048
+# define RDBUFSIZE	513
 
 struct s_channel
 {
@@ -37,19 +52,6 @@ struct s_channel
 
 typedef struct s_channel		t_channel;
 
-struct s_client
-{
-	char	*uid;
-	char	*server;
-	int		socket;
-	char	type;
-	char	*wrbuf;
-	int		wrindex;
-	char	*rdbuf;
-	int		rdindex;
-};
-
-typedef struct s_client			t_client;
 
 struct s_user
 {
@@ -92,14 +94,6 @@ void	manage_sockets(int dest, int s_sock, int *maxfd, fd_set *allset, t_server *
 
 void	execute_cmds(void);
 
-void	client_init(t_client *client, int clifd, char *servername);
-
-int		client_cmp(const void *content1, const void *content2);
-
-int		client_print(void *content);
-
-void	client_destroy(void *content, size_t content_size);
-
 void	accept_cli(fd_set *allset, int sock, int *maxfd, t_server *server);
 
 void	read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest);
@@ -107,6 +101,8 @@ void	read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest);
 void	write_sockets(fd_set *wset, fd_set *allset, t_server *server);
 
 int		cirbuf_read(int fd, char *cirbuf, int size, int *index);
+
+void	first_parse(char *buffer, int *index, t_server *server);
 
 int		print_bucket(void *content, void *data);
 

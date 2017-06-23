@@ -6,7 +6,7 @@
 #    By: ariard <ariard@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/03 00:35:24 by ariard            #+#    #+#              #
-#    Updated: 2017/06/22 19:51:00 by ariard           ###   ########.fr        #
+#    Updated: 2017/06/23 17:08:43 by ariard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,11 @@ INC_DIR		=	includes/
 OBJ_DIR		=	objs/
 
 SERV_OBJ	=	$(OBJ_DIR)server.o
-CLI_OBJ		=	$(OBJ_DIR)client.o
+CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 
 SRC_BASE	=	\
-client.c\
+cli/client.c\
+cli/terminal.c\
 daemon.c\
 database/client_cmp.c\
 database/client_destroy.c\
@@ -43,6 +44,7 @@ init_server.c\
 loop.c\
 serv/accept_cli.c\
 serv/cirbuf_read.c\
+serv/first_parse.c\
 serv/read_sockets.c\
 serv/sockets.c\
 serv/write_sockets.c\

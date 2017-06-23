@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_init.c                                      :+:      :+:    :+:   */
+/*   cli.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/21 17:04:54 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/23 16:27:05 by ariard           ###   ########.fr       */
+/*   Created: 2017/06/23 16:29:09 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/23 17:11:16 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "irc.h"
+#ifndef CLI_H
+#define CLI_H
 
-void		client_init(t_client *client, int clifd, char *servername)
-{
-	struct timeval tp;
+#include <termios.h>
 
-	gettimeofday(&tp, NULL);
-	client->uid = ft_itoa(tp.tv_sec);
-	client->server = servername;
-	client->socket = clifd;	
-	client->type = CLIENT;
-	client->wrbuf = ft_memalloc(sizeof(char) * 1024);
-	client->wrindex = 0;
-	client->rdbuf = ft_memalloc(sizeof(char) * RDBUFSIZE);
-	client->rdindex = 0;
-}
+static struct termios	save;
+static int				ttysavefd = -1;
+static enum { RESET, RAW, CBREAK } ttystate = RESET;
+
+
+int			tty_raw(int fd);
+
+int			tty_reset(int fd);
+
+void		tty_atexit(void);
+
+void		configure_client(int fd);
+
+#endif

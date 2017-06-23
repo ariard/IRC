@@ -19,7 +19,14 @@ to-do :
  - init servers
  - clients locations configuration
  - parsing messages (circular buffer), stack of commands
+ - vider buffer (with "\n\r") and parsing
+ - finite-state machine and BNF
+ 	- connection registration messages
+
  - layer identification between server-clients, generate user struct
+
+write test in Python to check all is great
+
 
  - sending messages between two clients
  - minimal clients shell

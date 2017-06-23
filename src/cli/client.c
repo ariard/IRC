@@ -6,17 +6,12 @@
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 20:47:31 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/22 18:32:39 by ariard           ###   ########.fr       */
+/*   Updated: 2017/06/23 17:28:39 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "irc.h"
 
-void	usage(char *str)
-{
-	printf("usage %s <addr> <port>\n", str);
-	exit(-1);
-}
 
 int		gen_client(char *addr, int port)
 {
@@ -46,18 +41,24 @@ int		main(int ac, char **av)
 	int				sock;
 	int				c;
 //	int				nread;
-	char			buf[1024];
+	
 	
 	if (ac != 3)
-		usage(av[0]);
+		ft_usage("usage %s <addr> <port>\n", av[0]);
 	port = atoi(av[2]);	
 	sock = gen_client(av[1], port);
+	configure_client(STDIN_FILENO);
 	c = '\0';
-	ft_bzero(buf, 1024);
 	while (1)
 	{
 		read(0, &c, 1);
 		write(sock, &c, 1);
+		if (c == 13)
+		{
+			c = 10;
+			write(sock, &c, 1);
+		}
+
 //		nread = read(sock, buf, 1024);
 //		if (nread > 0)
 //			write(1, buf, 1024);

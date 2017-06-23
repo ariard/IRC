@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_init.c                                      :+:      :+:    :+:   */
+/*   first_parse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/21 17:04:54 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/23 16:27:05 by ariard           ###   ########.fr       */
+/*   Created: 2017/06/23 15:36:40 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/23 18:23:50 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "irc.h"
 
-void		client_init(t_client *client, int clifd, char *servername)
+void		first_parse(char *buffer, int *index, t_server *server)
 {
-	struct timeval tp;
+	int		i;
 
-	gettimeofday(&tp, NULL);
-	client->uid = ft_itoa(tp.tv_sec);
-	client->server = servername;
-	client->socket = clifd;	
-	client->type = CLIENT;
-	client->wrbuf = ft_memalloc(sizeof(char) * 1024);
-	client->wrindex = 0;
-	client->rdbuf = ft_memalloc(sizeof(char) * RDBUFSIZE);
-	client->rdindex = 0;
+	(void)server;
+	i = *index - 1;
+	while (i > 0 && i != *index && buffer[i])
+	{
+		if (i != 0 && buffer[i] == 10 && buffer[i - 1] == 13)
+			DG("delim detected");
+		else if (buffer[i] == 10 && buffer[RDBUFSIZE] == 13)
+			DG("delim detected");
+		if (i == 0)
+			i = RDBUFSIZE;
+		i--;
+	}
 }
