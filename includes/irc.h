@@ -30,6 +30,7 @@
 
 # include "database.h"
 # include "cli.h"
+# include "cmds.h"
 
 /* Class of Users */
 

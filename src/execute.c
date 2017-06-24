@@ -14,5 +14,11 @@
 
 void		execute_cmds(t_server *server)
 {
-	ft_lstiter(server->cmds, &print_cmds, NULL);	
+	t_cmd	cmd;
+	t_list	*tokens;
+
+	tokens = NULL;
+	lexer(tokens, pop(&server->cmds));
+	parse(cmd);
+	ft_lstiter(server->cmds, &print_cmds, NULL);
 }
