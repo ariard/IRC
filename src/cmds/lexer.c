@@ -20,7 +20,7 @@ void			lexer(t_list *tokens, int content)
 	char		*cmd;
 	t_token		token;
 
-	cmd = (char *)content;
+	cmd = (char *)&content;
 	while (cmd)
 	{
 		i = -1;

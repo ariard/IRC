@@ -33,6 +33,8 @@ CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 SRC_BASE	=	\
 cli/client.c\
 cli/terminal.c\
+cmds/lexer.c\
+cmds/parse.c\
 daemon.c\
 database/client_cmp.c\
 database/client_destroy.c\

@@ -20,14 +20,31 @@
 # define AT_SIGN	1 << 3 
 # define EXCLAMATION	1 << 4
 
+enum	e_sym
+{
+	TERM = 0;
+	PROTO_PREFIX,
+	PREFIX,
+};
+
+
 struct s_lexmatch
 {
 	int	type;
-	char	min
+	char	min;
 	char	max;
-}
+};
 
 typedef struct s_lexmatch	t_lexmatch;
+
+struct parsematch
+{
+	int	sym;
+	int	top;
+	int	newtype;
+};
+
+typedef struct s_parsematch	t_parsematch;
 
 struct s_token
 {
@@ -46,8 +63,8 @@ struct s_cmd
 
 typedef struct s_cmd		t_cmd;
 
-void	lexer(t_list tokens, int content);
+void	lexer(t_list *tokens, int content);
 
-void	parse(t_list *tokens);
+void	parse(t_list *tokens, t_cmd *cmd);
 
 #endif

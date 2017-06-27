@@ -77,15 +77,16 @@ struct s_server
 
 typedef struct s_server			t_server;
 
-struct s_cmd
+/* struct s_streamcmd
 {
 	char	prio;
 	char	*msg;
 };
 
-typedef struct s_cmd			t_cmd;
+typedef struct s_streamcmd		t_streamcmd;
+*/
 
-int		daemonize(void);
+int	daemonize(void);
 
 void	server_loop(int dest, int s_sock, t_server *server);
 

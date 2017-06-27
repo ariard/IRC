@@ -19,6 +19,6 @@ void		execute_cmds(t_server *server)
 
 	tokens = NULL;
 	lexer(tokens, pop(&server->cmds));
-	parse(cmd);
-	ft_lstiter(server->cmds, &print_cmds, NULL);
+	parse(tokens, &cmd);
+//	ft_lstiter(server->cmds, &print_cmds, NULL);
 }
