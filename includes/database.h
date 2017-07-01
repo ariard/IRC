@@ -17,12 +17,13 @@ struct s_client
 {
 	char	*uid;
 	char	*server;
-	int		socket;
+	int	socket;
 	char	type;
 	char	*wrbuf;
-	int		wrindex;
+	int	wrindex;
 	char	*rdbuf;
-	int		rdindex;
+	int	rdindex;
+	void	*user;	
 };
 
 typedef struct s_client			t_client;

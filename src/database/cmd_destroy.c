@@ -2,9 +2,10 @@
 
 void	cmd_destroy(void *content, size_t size)
 {
-	char	*str;
+	t_streamcmd	*cmd;
 
 	(void)size;
-	str = (char *)content;
-	ft_strdel(&str);
+	cmd = (t_streamcmd *)content;;
+	ft_strdel(cmd.buf);
+	cmd.uid = NULL;
 }	

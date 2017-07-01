@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ariard <ariard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/21 17:04:00 by ariard            #+#    #+#             */
-/*   Updated: 2017/06/23 18:53:45 by ariard           ###   ########.fr       */
+/*   Created: 2017/06/21 16:11:24 by ariard            #+#    #+#             */
+/*   Updated: 2017/06/23 20:29:20 by ariard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "irc.h"
 
-void	server_loop(int dest, int s_sock, t_server *server)
-{	
-	fd_set	allset;
-	int		maxfd;
+void		manage_cmds(t_server *server)
+{
+	t_cmd	cmd;
+	t_list	*tokens;
 
-	FD_ZERO(&allset);
-	FD_SET(s_sock, &allset);
-	maxfd = s_sock;
-	while (1)
-	{
-		manage_sockets(dest, s_sock, &maxfd, &allset, server);
-		execute_cmds(server);
-	}
+	if (!server->cmds && server->cmds->content)
+		return ; 
+	tokens = NULL;
+	cmd.uid = (char *)((t_streamcmd *)(server->cmds)->content)->uid;
+	lexer(&tokens, ft_lst_pop(&server->cmds));
+	if (parse(&tokens, &cmd))
+		DG("ERROR");
+	print_cmd(&cmd, NULL);
+	execute_cmd(&cmd, server);
+//	ft_lstiter(server->cmds, &print_cmds, NULL);
 }

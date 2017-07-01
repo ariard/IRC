@@ -16,6 +16,8 @@ int		print_cmd(void *content, void *data)
 	
 	(void)data;
 	cmd = (t_cmd *)content;
+	if (cmd->uid)
+		DG("uid %s", cmd->uid);
 	if (cmd->prefix)
 		DG("prefix %s", cmd->prefix);
 	if (cmd->cmd)

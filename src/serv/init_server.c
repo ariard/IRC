@@ -18,6 +18,7 @@ void	init_serv(char *name, t_server *server)
 		ft_usage("ircd: servername is too long, max 63 characters");
 	ft_bzero(server->name, 63);
 	ft_strcpy(server->name, name);
+	DG("server name %s", server->name);
 	hashtab_init(&server->clients, 200, &ft_hash_string);
 	hashtab_init(&server->channels, 200, &ft_hash_string);
 	hashtab_init(&server->servers, 200, &ft_hash_string);

@@ -12,13 +12,16 @@
 
 #include "irc.h"
 
-static void		push_buf(int i, int index, char *bufcli, t_server *server)
+static void		push_buf(int i, int index, char *bufcli,
+			t_server *server,
+			char *uid)
 {
+	int		j;
 	char		buf[514];
-	int			j;
+	t_streamcmd	stream;
 
-	(void)server;
-	DG("delim detect!");
+
+//	DG("delim detect!");
 	ft_bzero(buf, 514);
 	ft_memcpy(buf, &bufcli[index], RDBUFSIZE - index);
 	ft_memcpy(&buf[RDBUFSIZE - index + 1], &bufcli[0], i);
@@ -28,7 +31,9 @@ static void		push_buf(int i, int index, char *bufcli, t_server *server)
 	j = -1;
 	while (!buf[++j]);
 //	DG("new buf %s", &buf[j]);
-	ft_lsteadd(&server->cmds, ft_lstnew(&buf[j], ft_strlen(&buf[j])));
+	stream.buf = &buf[j];
+	stream.uid = uid;
+	ft_lsteadd(&server->cmds, ft_lstnew(&stream, sizeof(stream)));
 }
 
 void		first_parse(char *buffer, int index, t_server *server)

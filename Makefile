@@ -33,11 +33,7 @@ CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 SRC_BASE	=	\
 cli/client.c\
 cli/terminal.c\
-cmds/get_cmd_members.c\
-cmds/lexer.c\
-cmds/parse.c\
-cmds/token_destroy.c\
-daemon.c\
+cmds/execute_cmds.c\
 database/client_cmp.c\
 database/client_destroy.c\
 database/client_init.c\
@@ -47,16 +43,21 @@ debug/print_bucket.c\
 debug/print_cmd.c\
 debug/print_cmds.c\
 debug/print_tokens.c\
-execute.c\
-init_server.c\
-loop.c\
+parse/get_cmd_members.c\
+parse/lexer.c\
+parse/parse.c\
+parse/token_destroy.c\
 serv/accept_cli.c\
 serv/cirbuf_read.c\
+serv/daemon.c\
+serv/execute.c\
 serv/first_parse.c\
+serv/init_server.c\
+serv/loop.c\
 serv/read_sockets.c\
+serv/server.c\
 serv/sockets.c\
-serv/write_sockets.c\
-server.c
+serv/write_sockets.c
 
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS		=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))

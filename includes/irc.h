@@ -30,6 +30,7 @@
 
 # include "database.h"
 # include "cli.h"
+# include "parse.h"
 # include "cmds.h"
 
 /* Class of Users */
@@ -56,8 +57,8 @@ typedef struct s_channel		t_channel;
 
 struct s_user
 {
-	char	*server;
 	char	nickname[10];
+	char	password[31];
 	char	*username;
 	char	*hostname;
 	char	mode;
@@ -77,14 +78,14 @@ struct s_server
 
 typedef struct s_server			t_server;
 
-/* struct s_streamcmd
+struct s_streamcmd
 {
-	char	prio;
-	char	*msg;
+	char	*buf;
+	char	*uid;
 };
 
 typedef struct s_streamcmd		t_streamcmd;
-*/
+
 
 int	daemonize(void);
 
@@ -94,7 +95,9 @@ void	init_serv(char *name, t_server *server);
 
 void	manage_sockets(int dest, int s_sock, int *maxfd, fd_set *allset, t_server *server);
 
-void	execute_cmds(t_server *server);
+void	manage_cmds(t_server *server);
+
+void	execute_cmd(t_cmd *cmd, t_server *server);
 
 void	accept_cli(fd_set *allset, int sock, int *maxfd, t_server *server);
 
@@ -102,21 +105,25 @@ void	read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest);
 
 void	write_sockets(fd_set *wset, fd_set *allset, t_server *server);
 
-int		cirbuf_read(int fd, char *cirbuf, int size, int *index);
+int	cirbuf_read(int fd, char *cirbuf, int size, int *index);
 
 void	first_parse(char *buffer, int index, t_server *server);
 
+/* Lib Server */
+
+void	construct_msg(char *uid, t_server *server, char *msg);
+
 /* Debug */
 
-int		print_bucket(void *content, void *data);
+int	print_bucket(void *content, void *data);
 
-int		print_cmds(void *content, void *data);
+int	print_cmds(void *content, void *data);
 
-int		print_tokens(void *content, void *data);
+int	print_tokens(void *content, void *data);
 
-int		print_cmd(void *content, void *data);
+int	print_cmd(void *content, void *data);
 
-int		print_params(void *content, void *data);
+int	print_params(void *content, void *data);
 
 #endif
 

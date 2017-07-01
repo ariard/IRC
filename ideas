@@ -24,18 +24,16 @@ to-do :
  	- connection registration messages
 
  - layer identification between server-clients, generate user struct
-
-write test in Python to check all is great
-
-
  - sending messages between two clients
  - minimal clients shell
+
+write test in Python to check all is great
 
  - connect server-to-server, check if disconnect (PASS, SERVER)
  - align global state information (SERVER, NICK)
  - passing informations from c2c on different servers (routing algorithms)
 
-
+ - channels operation
 
 client-server errors, conversation level:
 	- envoi partielle ou incomplet
@@ -50,3 +48,8 @@ client-server errors, conversation level:
 -core servers 
 -servers tools
 -database
+
+3 layers :
+id client
+msg passing
+channels
