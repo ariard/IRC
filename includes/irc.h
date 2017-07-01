@@ -112,6 +112,12 @@ int		print_bucket(void *content, void *data);
 
 int		print_cmds(void *content, void *data);
 
+int		print_tokens(void *content, void *data);
+
+int		print_cmd(void *content, void *data);
+
+int		print_params(void *content, void *data);
+
 #endif
 
 

@@ -33,15 +33,20 @@ CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 SRC_BASE	=	\
 cli/client.c\
 cli/terminal.c\
+cmds/get_cmd_members.c\
 cmds/lexer.c\
 cmds/parse.c\
+cmds/token_destroy.c\
 daemon.c\
 database/client_cmp.c\
 database/client_destroy.c\
 database/client_init.c\
 database/client_print.c\
+database/cmd_destroy.c\
 debug/print_bucket.c\
+debug/print_cmd.c\
 debug/print_cmds.c\
+debug/print_tokens.c\
 execute.c\
 init_server.c\
 loop.c\

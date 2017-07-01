@@ -14,19 +14,22 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-# define NOSPCRLFCL	1 << 0
-# define SPACE		1 << 1
-# define COLON		1 << 2
-# define AT_SIGN	1 << 3 
-# define EXCLAMATION	1 << 4
+# include "irc.h"
 
 enum	e_sym
 {
-	TERM = 0;
-	PROTO_PREFIX,
+	TERM = 0,
+	NOSPCRLFCL,
+	SPACE,
+	COLON,
+	AT_SIGN,
+	EXCLAMATION,
 	PREFIX,
+	SPACE_PREFIX,
+	CMD,
+	PARAM,
+	ERROR,
 };
-
 
 struct s_lexmatch
 {
@@ -37,7 +40,7 @@ struct s_lexmatch
 
 typedef struct s_lexmatch	t_lexmatch;
 
-struct parsematch
+struct s_parsematch
 {
 	int	sym;
 	int	top;
@@ -49,7 +52,7 @@ typedef struct s_parsematch	t_parsematch;
 struct s_token
 {
 	int	type;
-	char	value;
+	char	*value;
 };
 
 typedef struct s_token		t_token;
@@ -63,8 +66,12 @@ struct s_cmd
 
 typedef struct s_cmd		t_cmd;
 
-void	lexer(t_list *tokens, int content);
+void	lexer(t_list **tokens, t_list *top);
 
-void	parse(t_list *tokens, t_cmd *cmd);
+int	parse(t_list **tokens, t_cmd *cmd);
+
+void	get_cmd_members(t_list **stack, t_cmd *cmd);
+
+void	token_destroy(void *content, size_t size);
 
 #endif

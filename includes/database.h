@@ -29,10 +29,12 @@ typedef struct s_client			t_client;
 
 void	client_init(t_client *client, int clifd, char *servername);
 
-int		client_cmp(const void *content1, const void *content2);
+int	client_cmp(const void *content1, const void *content2);
 
-int		client_print(void *content);
+int	client_print(void *content);
 
 void	client_destroy(void *content, size_t content_size);
+
+void	cmd_destroy(void *content, size_t size);
 
 #endif

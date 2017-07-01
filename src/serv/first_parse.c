@@ -22,7 +22,7 @@ static void		push_buf(int i, int index, char *bufcli, t_server *server)
 	ft_bzero(buf, 514);
 	ft_memcpy(buf, &bufcli[index], RDBUFSIZE - index);
 	ft_memcpy(&buf[RDBUFSIZE - index + 1], &bufcli[0], i);
-	buf[i + RDBUFSIZE - index + 1] = 0;
+	buf[i + RDBUFSIZE - index] = 0;
 	ft_bzero(&bufcli[index], RDBUFSIZE - index);
 	ft_bzero(bufcli, i + 1);
 	j = -1;

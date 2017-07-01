@@ -17,8 +17,13 @@ void		execute_cmds(t_server *server)
 	t_cmd	cmd;
 	t_list	*tokens;
 
+	(void)cmd;
+	if (!server->cmds)
+		return ; 
 	tokens = NULL;
-	lexer(tokens, pop(&server->cmds));
-	parse(tokens, &cmd);
+	lexer(&tokens, ft_lst_pop(&server->cmds));
+	if (parse(&tokens, &cmd))
+		DG("ERROR");
+	print_cmd(&cmd, NULL);
 //	ft_lstiter(server->cmds, &print_cmds, NULL);
 }

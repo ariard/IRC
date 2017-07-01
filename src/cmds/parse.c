@@ -2,66 +2,97 @@
 
 static t_parsematch	g_parsematch[] =
 {
-	{NOSPCRLFCL, TERM, PROTO_PREFIX},
-	{NOSPCRLFCL, PROTO_PREFIX, PROTO_PREFIX}
-	{SPACE, PROTO_PREFIX, PREFIX},
+	{COLON, TERM, 0},
+	{NOSPCRLFCL, COLON, PREFIX},
+	{NOSPCRLFCL, PREFIX, PREFIX},
+	{SPACE_PREFIX, PREFIX, 0},
+	{NOSPCRLFCL, SPACE_PREFIX, CMD},
+	{NOSPCRLFCL, CMD, CMD},
+	{SPACE, CMD, 0},
+	{NOSPCRLFCL, SPACE, PARAM},
+	{NOSPCRLFCL, PARAM, PARAM},
+	{SPACE, PARAM, 0},
+	{ERROR, 0, 0},
 };
 
-void		init_stack(t_list *stack)
+static void		init_stack(t_list **stack)
 {
-	t_cmd	cmd;
+	t_token	token;
 
-	cmd.type = TERM;
-	cmd.value = 0;
-	ft_lstadd(&stack, ft_lstnew(&cmd, sizeof(cmd)));
+	token.type = TERM;
+	token.value = 0;
+	ft_lstadd(stack, ft_lstnew(&token, sizeof(token)));
 }
 
-void		shift(int newtype, t_list **stack, t_list **tokens)
+static void		shift(int newtype, void *content, t_token *sym, t_list **tokens)
 {
-	t_token		*sym;
+	t_token		*top;
+	char	*tmp;
+	t_list		*elem;
 
-	if (!stack || !*stack || !tokens || !*tokens)
+//	DG("shift");
+	if (!tokens || !*tokens  )
 		return ; 
-	sym = (**stack)->content;
-	sym->type = newtype;
-//	aggregate one ft_strncat
-	ft_lstadd(stack, *tokens);
-	*tokens = tokens->next;
+	top = content;
+	top->type = newtype;
+	tmp = top->value;
+	top->value = ft_strjoin(top->value, sym->value);
+	ft_strdel(&tmp);
+	if ((elem = ft_lst_pop(tokens)))
+	{
+		token_destroy(elem->content, 0);
+		free(elem);
+		elem = NULL;
+	}
 }
 
-void		push(t_list **stack, t_list **tokens)
+static void		push_token(t_list **stack, t_list **tokens)
 {
-	if (!stack || !*stack || !tokens || !*tokens)
+//	DG("push");
+	if (!stack || !*stack || !tokens || !*tokens)
 		return ; 
-	ft_lstadd(stack, *tokens);
-	*tokens = tokens->next;
+	ft_lstadd(stack, ft_lst_pop(tokens));
 }
 
-void		parse(t_list *tokens, t_cmd *cmd)
+static void		morph_tokens(t_token *sym, t_token *top)
+{
+	if (top->type == PREFIX && sym->type == SPACE)
+		sym->type = SPACE_PREFIX;
+}	
+
+int			parse(t_list **tokens, t_cmd *cmd)
 {
 	int		i;
 	t_token		*sym;
 	t_token		*top;
 	t_list		*stack;
 
-	init_stack(stack);
-	while (tokens)
+	stack = NULL;
+	init_stack(&stack);
+	DG("stack init");
+	while (tokens && *tokens)
 	{
 		i = -1;
-		sym = tokens->content;
+		sym = (*tokens)->content;
 		top = stack->content;
-		while (g_parsematch[++i].sym)
-			if (sym->type == g_parsematch[++i].sym 
-				&& top->type == g_parsematch[++i].top)
+//		print_tokens(sym, NULL);
+//		DG("vs");
+//		print_tokens(top, NULL);
+		morph_tokens(sym, top);
+		while (g_parsematch[++i].sym != ERROR)
+			if (sym->type == g_parsematch[i].sym 
+				&& top->type == g_parsematch[i].top)
 			{
+	//			DG("match");
 				if (g_parsematch[i].newtype)
-					shift(g_parsematch[i].newtype, &stack, &tokens);
+					shift(g_parsematch[i].newtype, stack->content, sym, tokens);
 				else
-					push(&stack, &tokens);
+					push_token(&stack, tokens);
 				break;
 			}
 		if (g_parsematch[i].sym == ERROR)
 			return (-1); // ERROR
-//		get_cmd_members();
 	}
+	get_cmd_members(&stack, cmd);
+	return (0);
 }
