@@ -23,6 +23,6 @@ void	server_loop(int dest, int s_sock, t_server *server)
 	while (1)
 	{
 		manage_sockets(dest, s_sock, &maxfd, &allset, server);
-		manange_cmds(server);
+		manage_cmds(server);
 	}
 }

@@ -31,12 +31,12 @@ static void		push_buf(int i, int index, char *bufcli,
 	j = -1;
 	while (!buf[++j]);
 //	DG("new buf %s", &buf[j]);
-	stream.buf = &buf[j];
+	stream.buf = ft_strdup(&buf[j]);
 	stream.uid = uid;
 	ft_lsteadd(&server->cmds, ft_lstnew(&stream, sizeof(stream)));
 }
 
-void		first_parse(char *buffer, int index, t_server *server)
+void		first_parse(char *buffer, int index, t_server *server, char *uid)
 {
 	int		i;
 
@@ -47,9 +47,9 @@ void		first_parse(char *buffer, int index, t_server *server)
 	while (i > 0 && i != index && buffer[i])
 	{
 		if (i != 0 && buffer[i] == 10 && buffer[i - 1] == 13)
-			push_buf(i, index, buffer, server);
+			push_buf(i, index, buffer, server, uid);
 		else if (buffer[i] == 10 && buffer[RDBUFSIZE - 1] == 13)
-			push_buf(i, index, buffer, server);
+			push_buf(i, index, buffer, server, uid);
 		if (i == 0)
 			i = RDBUFSIZE;
 		i--;

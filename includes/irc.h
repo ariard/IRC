@@ -28,6 +28,8 @@
 # include <sys/select.h>
 # include <sys/time.h>
 
+# include "types.h"
+# include "msg.h"
 # include "database.h"
 # include "cli.h"
 # include "parse.h"
@@ -39,44 +41,9 @@
 # define OPERATOR	1 << 1
 # define SERVICE	1 << 2
 
-
 /* Server side */
 
 # define RDBUFSIZE	513
-
-struct s_channel
-{
-	char	name[51];
-	t_list	*members;
-	int		mode;
-	int		scope;
-};
-
-typedef struct s_channel		t_channel;
-
-
-struct s_user
-{
-	char	nickname[10];
-	char	password[31];
-	char	*username;
-	char	*hostname;
-	char	mode;
-};
-
-typedef struct s_user			t_user;
-
-struct s_server
-{
-	char		name[64];
-//	char		*hostmask;
-	t_hashtab	clients;
-	t_hashtab	channels;
-	t_hashtab	servers;
-	t_list		*cmds;
-};
-
-typedef struct s_server			t_server;
 
 struct s_streamcmd
 {
@@ -84,8 +51,16 @@ struct s_streamcmd
 	char	*uid;
 };
 
-typedef struct s_streamcmd		t_streamcmd;
-
+struct s_server
+{
+	char		name[64];
+//	char		*hostmask;
+	t_hashtab	clients;
+	t_hashtab	users;
+	t_hashtab	channels;
+	t_hashtab	servers;
+	t_list		*cmds;
+};
 
 int	daemonize(void);
 
@@ -107,7 +82,9 @@ void	write_sockets(fd_set *wset, fd_set *allset, t_server *server);
 
 int	cirbuf_read(int fd, char *cirbuf, int size, int *index);
 
-void	first_parse(char *buffer, int index, t_server *server);
+void	first_parse(char *buffer, int index, t_server *server, char *uid);
+
+void	streamcmd_destroy(void *content, size_t size);
 
 /* Lib Server */
 
@@ -126,8 +103,3 @@ int	print_cmd(void *content, void *data);
 int	print_params(void *content, void *data);
 
 #endif
-
-
-// grammar parsing .h
-// error replies .h
-//

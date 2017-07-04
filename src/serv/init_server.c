@@ -22,5 +22,6 @@ void	init_serv(char *name, t_server *server)
 	hashtab_init(&server->clients, 200, &ft_hash_string);
 	hashtab_init(&server->channels, 200, &ft_hash_string);
 	hashtab_init(&server->servers, 200, &ft_hash_string);
+	hashtab_init(&server->users, 200, &ft_hash_string);
 	server->cmds = NULL;
 }

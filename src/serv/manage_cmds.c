@@ -17,7 +17,7 @@ void		manage_cmds(t_server *server)
 	t_cmd	cmd;
 	t_list	*tokens;
 
-	if (!server->cmds && server->cmds->content)
+	if (!server->cmds || !server->cmds->content)
 		return ; 
 	tokens = NULL;
 	cmd.uid = (char *)((t_streamcmd *)(server->cmds)->content)->uid;
@@ -26,5 +26,6 @@ void		manage_cmds(t_server *server)
 		DG("ERROR");
 	print_cmd(&cmd, NULL);
 	execute_cmd(&cmd, server);
+//	cmd_destroy(&cmd, 0);
 //	ft_lstiter(server->cmds, &print_cmds, NULL);
 }

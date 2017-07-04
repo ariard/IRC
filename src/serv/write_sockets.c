@@ -35,6 +35,7 @@ void		write_sockets(fd_set *wset, fd_set *allset, t_server *server)
 				close(client->socket);
 			}
 			ft_bzero(client->wrbuf, ft_strlen(client->wrbuf));
+			client->wrindex = 0;
 		}
 	}
 }

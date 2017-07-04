@@ -40,7 +40,8 @@ void		read_sockets(fd_set *rset, fd_set *allset, t_server *server, int dest)
 			{
 //				write(dest, buf, nread);
 				DG("rd: %s", client->rdbuf);
-				first_parse(client->rdbuf, client->rdindex, server);
+				first_parse(client->rdbuf, client->rdindex, server,
+					client->uid);
 			}
 		}
 	}

@@ -38,7 +38,6 @@ struct s_lexmatch
 	char	max;
 };
 
-typedef struct s_lexmatch	t_lexmatch;
 
 struct s_parsematch
 {
@@ -47,7 +46,6 @@ struct s_parsematch
 	int	newtype;
 };
 
-typedef struct s_parsematch	t_parsematch;
 
 struct s_token
 {
@@ -55,7 +53,6 @@ struct s_token
 	char	*value;
 };
 
-typedef struct s_token		t_token;
 
 struct s_cmd
 {
@@ -65,8 +62,6 @@ struct s_cmd
 	t_list	*params;
 };
 
-typedef struct s_cmd		t_cmd;
-
 void	lexer(t_list **tokens, t_list *top);
 
 int	parse(t_list **tokens, t_cmd *cmd);
@@ -74,5 +69,7 @@ int	parse(t_list **tokens, t_cmd *cmd);
 void	get_cmd_members(t_list **stack, t_cmd *cmd);
 
 void	token_destroy(void *content, size_t size);
+
+void	cmd_destroy(void *content, size_t size);
 
 #endif

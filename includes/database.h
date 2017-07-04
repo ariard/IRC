@@ -13,6 +13,8 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include "irc.h"
+
 struct s_client
 {
 	char	*uid;
@@ -23,10 +25,28 @@ struct s_client
 	int	wrindex;
 	char	*rdbuf;
 	int	rdindex;
-	void	*user;	
+	char	password[31];
+	char	*local_name;
 };
 
-typedef struct s_client			t_client;
+struct s_user
+{
+	char	nickname[10];
+	char	*username;
+	char	*hostname;
+	char	*servername;
+	char	*realname;
+	int	mode;
+	char	*local_uid;
+};
+
+struct s_channel
+{
+	char	name[51];
+	t_list	*members;
+	int	mode;
+	int	scope;
+};
 
 void	client_init(t_client *client, int clifd, char *servername);
 
@@ -36,6 +56,9 @@ int	client_print(void *content);
 
 void	client_destroy(void *content, size_t content_size);
 
-void	cmd_destroy(void *content, size_t size);
+void	user_init(t_user *user, char *msg);
+
+int	user_cmp(const void *content, const void *key);
+
 
 #endif

@@ -37,5 +37,5 @@ void			lexer(t_list **tokens, t_list *top)
 			}
 		cmd++;
 	}
-	ft_lstdelone(&top, &cmd_destroy);
+	ft_lstdelone(&top, &streamcmd_destroy);
 }

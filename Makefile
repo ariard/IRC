@@ -27,18 +27,23 @@ SRC_DIR		=	src/
 INC_DIR		=	includes/
 OBJ_DIR		=	objs/
 
-SERV_OBJ	=	$(OBJ_DIR)server.o
+SERV_OBJ	=	$(OBJ_DIR)serv/server.o
 CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 
 SRC_BASE	=	\
 cli/client.c\
 cli/terminal.c\
+cmds/cmd_nick.c\
+cmds/cmd_pass.c\
+cmds/cmds_user.c\
 cmds/execute_cmds.c\
 database/client_cmp.c\
 database/client_destroy.c\
 database/client_init.c\
 database/client_print.c\
 database/cmd_destroy.c\
+database/user_cmp.c\
+database/user_init.c\
 debug/print_bucket.c\
 debug/print_cmd.c\
 debug/print_cmds.c\
@@ -49,11 +54,12 @@ parse/parse.c\
 parse/token_destroy.c\
 serv/accept_cli.c\
 serv/cirbuf_read.c\
+serv/construct_msg.c\
 serv/daemon.c\
-serv/execute.c\
 serv/first_parse.c\
 serv/init_server.c\
 serv/loop.c\
+serv/manage_cmds.c\
 serv/read_sockets.c\
 serv/server.c\
 serv/sockets.c\

@@ -25,5 +25,6 @@ void		client_init(t_client *client, int clifd, char *servername)
 	client->wrindex = 0;
 	client->rdbuf = ft_memalloc(sizeof(char) * RDBUFSIZE);
 	client->rdindex = 0;
-	client->user = NULL;
+	ft_bzero(client->password, 31);
+	client->local_name = NULL;
 }
