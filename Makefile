@@ -22,7 +22,7 @@ LIBFT_DIR	=	libft/
 LIBFT_LIB	=	$(LIBFT_DIR)libft.a
 LIBFT_INC	=	$(LIBFT_DIR)includes/
 
-LIBS		=	
+LIBS		=	-ltermcap
 SRC_DIR		=	src/
 INC_DIR		=	includes/
 OBJ_DIR		=	objs/

@@ -37,31 +37,25 @@ int		gen_client(char *addr, int port)
 
 int		main(int ac, char **av)
 {
-	int				port;
-	int				sock;
-	int				c;
-//	int				nread;
-	
-	
+	int			port;
+	int			sock;
+	int			i;
+	char			buf[CLIBUF + 1];
+
 	if (ac != 3)
 		ft_usage("usage %s <addr> <port>\n", av[0]);
 	port = atoi(av[2]);	
 	sock = gen_client(av[1], port);
 	configure_client(STDIN_FILENO);
-	c = '\0';
+	loop(sock);	
 	while (1)
-	{
-		read(0, &c, 1);
-		write(sock, &c, 1);
-		if (c == 13)
-		{
-			c = 10;
-			write(sock, &c, 1);
-		}
-
-//		nread = read(sock, buf, 1024);
-//		if (nread > 0)
-//			write(1, buf, 1024);
+	{ 
+		ft_bzero(buf, CLIBUF);
+		i = 0;
+		while (buf[i] != 13 || ++i < CLIBUF)
+			read(0, buf, CLIBUF);
+		ft_strncat(buf, "\n", 1);
+		write(sock, buf, ft_strlen(buf));
 	}
 	close(sock);
 	return (0);

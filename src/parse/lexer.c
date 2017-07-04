@@ -24,12 +24,11 @@ void			lexer(t_list **tokens, t_list *top)
 	while (*cmd)
 	{
 		i = -1;
-		DG("chr %c", *cmd);
+//		DG("chr %c", *cmd);
 		while (g_lexmatch[++i].type)
 			if (*cmd >= g_lexmatch[i].min 
 				&& *cmd <= g_lexmatch[i].max)
 			{
-				DG(" add token");
 				token.type = g_lexmatch[i].type;
 				token.value = ft_strndup(cmd, 1);
 				ft_lsteadd(tokens, 
