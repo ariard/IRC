@@ -31,7 +31,12 @@ SERV_OBJ	=	$(OBJ_DIR)serv/server.o
 CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 
 SRC_BASE	=	\
+cli/add_buf.c\
 cli/client.c\
+cli/loop.c\
+cli/read_socket.c\
+cli/read_stdin.c\
+cli/send_buf.c\
 cli/terminal.c\
 cmds/cmd_nick.c\
 cmds/cmd_pass.c\
@@ -52,6 +57,15 @@ parse/get_cmd_members.c\
 parse/lexer.c\
 parse/parse.c\
 parse/token_destroy.c\
+prompt/prompt_add.c\
+prompt/prompt_clear.c\
+prompt/prompt_init.c\
+prompt/prompt_new.c\
+prompt/term_add.c\
+prompt/term_del.c\
+prompt/term_init.c\
+prompt/term_newline.c\
+prompt/term_put.c\
 serv/accept_cli.c\
 serv/cirbuf_read.c\
 serv/construct_msg.c\

@@ -27,6 +27,9 @@
 # include <signal.h>
 # include <sys/select.h>
 # include <sys/time.h>
+# include <termios.h>
+# include <term.h>
+# include <sys/ioctl.h>
 
 # include "types.h"
 # include "msg.h"
@@ -34,6 +37,7 @@
 # include "cli.h"
 # include "parse.h"
 # include "cmds.h"
+# include "prompt.h"
 
 /* Class of Users */
 

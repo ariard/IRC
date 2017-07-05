@@ -39,24 +39,15 @@ int		main(int ac, char **av)
 {
 	int			port;
 	int			sock;
-	int			i;
-	char			buf[CLIBUF + 1];
 
 	if (ac != 3)
 		ft_usage("usage %s <addr> <port>\n", av[0]);
 	port = atoi(av[2]);	
 	sock = gen_client(av[1], port);
+	if (term_init() <= 0)
+		DG("term fail");
 	configure_client(STDIN_FILENO);
-	loop(sock);	
-	while (1)
-	{ 
-		ft_bzero(buf, CLIBUF);
-		i = 0;
-		while (buf[i] != 13 || ++i < CLIBUF)
-			read(0, buf, CLIBUF);
-		ft_strncat(buf, "\n", 1);
-		write(sock, buf, ft_strlen(buf));
-	}
+	cli_loop(sock);	
 	close(sock);
 	return (0);
 }

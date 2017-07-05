@@ -14,4 +14,8 @@ typedef struct s_token		t_token;
 typedef struct s_cmd		t_cmd;
 typedef struct s_cmdmatch	t_cmdmatch;
 
+typedef struct s_cursor		t_cursor;
+typedef struct s_prompt		t_prompt;
+typedef struct s_keymatch	t_keymatch;
+
 #endif

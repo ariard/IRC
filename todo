@@ -1,0 +1,13 @@
+#test : 
+	- transmission checking (circular buff)
+	- LEAKS (script dedie)
+	- botnet (cmds implementees)
+
+#prompt :
+	- overflow
+	- underflow
+	- resize
+	- del
+
+!! CRASH !!
+	- 3 * cmd vide

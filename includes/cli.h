@@ -13,8 +13,16 @@
 #ifndef CLI_H
 #define CLI_H
 
-#include <termios.h>
-#include <term.h>
+# include "irc.h"
+
+# define DFLT	100
+# define CR	13
+
+struct	s_keymatch
+{
+	char	key;
+	void	(*f)(char buf[], t_prompt *prompt, int key, int sock);
+};
 
 static struct termios	save;
 static int				ttysavefd = -1;
@@ -30,16 +38,14 @@ void		tty_atexit(void);
 
 void		configure_client(int fd);
 
-/* Termcaps functions */
+void		cli_loop(int sock);
 
-extern char			*tgoto(const char *cstring, int hpos, int vpos);
+void		read_stdin(char buf[], t_prompt *prompt, int sock);
 
-extern int			tputs(const char *str, int affcnt, int (*putc)(int));
+void		read_socket(char buf_stdin[], char buf_socket[], t_prompt *prompt);
 
-extern int			tgetent(char *bp, const char *name);
+void		send_buf(char buf[], t_prompt *prompt, int key, int sock);
 
-extern char			*tgetstr(char *name, char **area);
-
-extern int			tgetnum(char *name);
+void		add_buf(char buf[], t_prompt *prompt, int key, int sock);
 
 #endif
