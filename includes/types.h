@@ -17,5 +17,7 @@ typedef struct s_cmdmatch	t_cmdmatch;
 typedef struct s_cursor		t_cursor;
 typedef struct s_prompt		t_prompt;
 typedef struct s_keymatch	t_keymatch;
+typedef struct s_answer		t_answer;
+typedef struct s_ansmatch	t_ansmatch;;
 
 #endif

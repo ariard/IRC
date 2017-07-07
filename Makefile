@@ -31,9 +31,14 @@ SERV_OBJ	=	$(OBJ_DIR)serv/server.o
 CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 
 SRC_BASE	=	\
+answer/rpl_welcome.c\
 cli/add_buf.c\
+cli/answer_destroy.c\
+cli/answer_execute.c\
+cli/answer_init.c\
 cli/client.c\
 cli/loop.c\
+cli/parse_bufsocket.c\
 cli/read_socket.c\
 cli/read_stdin.c\
 cli/send_buf.c\
@@ -61,11 +66,14 @@ prompt/prompt_add.c\
 prompt/prompt_clear.c\
 prompt/prompt_init.c\
 prompt/prompt_new.c\
+prompt/prompt_push.c\
 prompt/term_add.c\
 prompt/term_del.c\
 prompt/term_init.c\
+prompt/term_insert.c\
 prompt/term_newline.c\
 prompt/term_put.c\
+prompt/term_up.c\
 serv/accept_cli.c\
 serv/cirbuf_read.c\
 serv/construct_msg.c\

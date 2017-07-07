@@ -18,6 +18,18 @@
 # define DFLT	100
 # define CR	13
 
+struct	s_answer
+{
+	char	*reply;
+	t_list	*params;
+};
+
+struct	s_ansmatch
+{
+	char	*id;;
+	void	(*f)(t_answer *answer, char *std, t_prompt *prompt);
+};
+
 struct	s_keymatch
 {
 	char	key;
@@ -40,12 +52,27 @@ void		configure_client(int fd);
 
 void		cli_loop(int sock);
 
-void		read_stdin(char buf[], t_prompt *prompt, int sock);
+void		read_stdin(char buf[], int sock, t_prompt *prompt);
 
-void		read_socket(char buf_stdin[], char buf_socket[], t_prompt *prompt);
+void		read_socket(char buf_stdin[], char buf_socket[], 
+		int sock, t_prompt *prompt);
 
 void		send_buf(char buf[], t_prompt *prompt, int key, int sock);
 
 void		add_buf(char buf[], t_prompt *prompt, int key, int sock);
+
+void		answer_init(t_answer *answer);
+
+void		answer_destroy(t_answer *answer);
+
+void		answer_execute(t_answer *answer, char *buf_stdin,
+		t_prompt *prompt);
+
+void		parse_bufsocket(char *buf, t_answer *answer);
+
+/* Func Replies */
+
+void		rpl_welcome(t_answer *answer, char *buf_stdin,
+		t_prompt *prompt);
 
 #endif

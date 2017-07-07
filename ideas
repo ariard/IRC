@@ -35,6 +35,9 @@ write test in Python to check all is great
  - align global state information (SERVER, NICK)
  - passing informations from c2c on different servers (routing algorithms)
 
+- disconnet and flow infos (PING/PONG)
+- 
+
  - channels operation
 
 client-server errors, conversation level:

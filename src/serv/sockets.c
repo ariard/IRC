@@ -12,7 +12,8 @@
 
 #include "irc.h"
 
-void		manage_sockets(int dest, int s_sock, int *maxfd, fd_set *allset, t_server *server)
+void		manage_sockets(int dest, int s_sock, int *maxfd, fd_set *allset, 
+		t_server *server)
 {
 	fd_set		rset;
 	fd_set		wset;

@@ -3,15 +3,15 @@
 
 #include "irc.h"
 
-# define ERR_NONICKNAMEGIVEN		"431"
-# define ERR_ERRONEUSNICKNAME		"432"	
-# define ERR_NICKNAMEINUSE		"433"
-# define ERR_NEEDMOREPARAMS		"461"
-# define ERR_ALREADYREGISTERED		"462"
+# define RPL_WELCOME(x, y, z)		"001", 3, x, y, z	
 
-# define ERR_LENGPASS			"600"
-# define ERR_REGISTERORDER		"601"
+# define ERR_NONICKNAMEGIVEN		"431", 0
+# define ERR_ERRONEUSNICKNAME		"432", 0
+# define ERR_NICKNAMEINUSE		"433", 0
+# define ERR_NEEDMOREPARAMS		"461", 0
+# define ERR_ALREADYREGISTERED		"462", 0
 
-
+# define ERR_LENGPASS			"600", 0
+# define ERR_REGISTERORDER		"601", 0
 
 #endif 

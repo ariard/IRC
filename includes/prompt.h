@@ -22,9 +22,13 @@ void		prompt_init(t_prompt *prompt);
 
 void		prompt_clear(t_prompt *prompt);	
 
-void		prompt_add(t_prompt *prompt);
+void		prompt_add(t_prompt *prompt, char *buf);
 
 void		prompt_new(t_prompt *prompt);
+
+void		prompt_push(t_prompt *prompt, char *bufstdin, char *buf);
+
+void		term_insert(char *str);
 
 void		term_right(int size);
 
@@ -35,6 +39,8 @@ int		term_put(int c);
 void		term_newline(int size);
 
 int		term_init(void);
+
+void		term_up(int size);
 
 /* Termcaps functions */
 

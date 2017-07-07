@@ -46,7 +46,7 @@ int		main(int ac, char **av)
 	sock = gen_client(av[1], port);
 	if (term_init() <= 0)
 		DG("term fail");
-	configure_client(STDIN_FILENO);
+	configure_client(0);
 	cli_loop(sock);	
 	close(sock);
 	return (0);

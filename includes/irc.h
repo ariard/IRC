@@ -30,6 +30,7 @@
 # include <termios.h>
 # include <term.h>
 # include <sys/ioctl.h>
+# include <stdarg.h>
 
 # include "types.h"
 # include "msg.h"
@@ -92,7 +93,7 @@ void	streamcmd_destroy(void *content, size_t size);
 
 /* Lib Server */
 
-void	construct_msg(char *uid, t_server *server, char *msg);
+void	construct_msg(char *uid, t_server *server, ...);
 
 /* Debug */
 

@@ -6,23 +6,21 @@ static t_keymatch	g_keymatch[] =
 	{DFLT, &add_buf},
 };
 
-void	read_stdin(char buf[], t_prompt *prompt, int sock)
+void	read_stdin(char buf[], int sock, t_prompt *prompt)
 {
-	int	key;
+	char	b[514 + 1];
 	int	i;
+	int	j;
 
-	(void)buf;
-	(void)prompt;
-	(void)sock;
-	(void)g_keymatch;
-	while (1)
+//	DG("read stdin");
+	ft_bzero(b, 514);
+	read(0, b, 514);
+	j = -1;
+	while (b[++j])
 	{
-		key = 0;
-		if (read(0, &key, 1) <= 0)
-			break;
 		i = -1;
-//		DG("key %c", key);
-		while (g_keymatch[++i].key != DFLT && g_keymatch[i].key != key);
-		g_keymatch[i].f(buf, prompt, key, sock);
+		while (g_keymatch[++i].key != DFLT && g_keymatch[i].key != b[j]);
+		g_keymatch[i].f(buf, prompt, b[j], sock);
 	}
+//	DG("end read stdin");
 }

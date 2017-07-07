@@ -11,3 +11,6 @@
 
 !! CRASH !!
 	- 3 * cmd vide
+	- "PASS hel" on ft_hash_string
+
+!! BUFFERISATION par TCP ?
