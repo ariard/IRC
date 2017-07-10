@@ -17,4 +17,6 @@ void	cmd_user(t_cmd *cmd, t_server *server);
 
 void	cmd_quit(t_cmd *cmd, t_server *server);
 
+void	cmd_privmsg(t_cmd *cmd, t_server *server);
+
 #endif

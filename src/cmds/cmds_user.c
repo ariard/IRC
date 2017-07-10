@@ -8,9 +8,9 @@ void		cmd_user(t_cmd *cmd, t_server *server)
 	elem = hashtab_lookup(&server->clients, cmd->uid, &client_cmp);
 	if (elem && !(elem = hashtab_lookup(&server->users, 
 		(char *)((t_client *)elem->content)->local_name, &user_cmp)) && !elem)
-		return (construct_msg(cmd->uid, server, ERR_REGISTERORDER));
+		return (construct_msg(cmd->uid, server, ERR_REGISTERORDER("default")));
 	if ((user = (t_user *)elem->content) && user->username)
-		return (construct_msg(cmd->uid, server, ERR_ALREADYREGISTERED));
+		return (construct_msg(cmd->uid, server, ERR_ALREADYREGISTERED(user->nickname)));
 	if (ft_lst_at(cmd->params, 0) && ft_lst_at(cmd->params, 1)
 		&& ft_lst_at(cmd->params, 3))
 	{
@@ -22,6 +22,6 @@ void		cmd_user(t_cmd *cmd, t_server *server)
   		DG("mode %d", user->mode);
 	}	
 	else
-		return (construct_msg(cmd->uid, server, ERR_NEEDMOREPARAMS));
+		return (construct_msg(cmd->uid, server, ERR_NEEDMOREPARAMS("/USER")));
 	construct_msg(cmd->uid, server, RPL_WELCOME(user->nickname, user->username, "localhost"));
 }

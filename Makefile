@@ -31,6 +31,13 @@ SERV_OBJ	=	$(OBJ_DIR)serv/server.o
 CLI_OBJ		=	$(OBJ_DIR)cli/client.o
 
 SRC_BASE	=	\
+answer/err_alreadyregistered.c\
+answer/err_erroneusnickname.c\
+answer/err_lengpass.c\
+answer/err_needmoreparams.c\
+answer/err_nicknameinuse.c\
+answer/err_nonicknamegiven.c\
+answer/err_registerorder.c\
 answer/rpl_welcome.c\
 cli/add_buf.c\
 cli/answer_destroy.c\

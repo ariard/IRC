@@ -12,7 +12,7 @@ void	read_stdin(char buf[], int sock, t_prompt *prompt)
 	int	i;
 	int	j;
 
-//	DG("read stdin");
+// 	DG("read stdin");
 	ft_bzero(b, 514);
 	read(0, b, 514);
 	j = -1;

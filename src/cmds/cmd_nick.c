@@ -11,15 +11,15 @@ void	cmd_nick(t_cmd *cmd, t_server *server)
 	if ((elem = hashtab_lookup(&server->clients, cmd->uid, &client_cmp)))
 		local_nickname = (char *)((t_client *)elem->content)->local_name;
 	if (!(char *)((t_client *)elem->content)->password)
-		return (construct_msg(cmd->uid, server, ERR_REGISTERORDER));
+		return (construct_msg(cmd->uid, server, ERR_REGISTERORDER("default")));
 	if (cmd->params)
 		nickname = (char *)(cmd->params)->content;
 	else
-		return (construct_msg(cmd->uid, server, ERR_NONICKNAMEGIVEN));
+		return (construct_msg(cmd->uid, server, ERR_NONICKNAMEGIVEN("default")));
 	if (hashtab_lookup(&server->users, nickname, &user_cmp))
-		return (construct_msg(cmd->uid, server, ERR_NICKNAMEINUSE));
+		return (construct_msg(cmd->uid, server, ERR_NICKNAMEINUSE("default")));
 	if (ft_strlen(nickname) > 9)
-		return (construct_msg(cmd->uid, server, ERR_ERRONEUSNICKNAME));
+		return (construct_msg(cmd->uid, server, ERR_ERRONEUSNICKNAME("default")));
 	client = (t_client *)elem->content;
 	client->local_name = nickname;
 	if (!(elem = hashtab_lookup(&server->users, client->local_name, &user_cmp)))

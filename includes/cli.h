@@ -70,9 +70,4 @@ void		answer_execute(t_answer *answer, char *buf_stdin,
 
 void		parse_bufsocket(char *buf, t_answer *answer);
 
-/* Func Replies */
-
-void		rpl_welcome(t_answer *answer, char *buf_stdin,
-		t_prompt *prompt);
-
 #endif

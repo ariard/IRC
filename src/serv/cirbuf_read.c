@@ -18,6 +18,7 @@ int			cirbuf_read(int fd, char *cirbuf, int size, int *index)
 	int		nread;
 
 	nread = read(fd, buf, 1024);
+	DG("nread is %d", nread);
 	if (nread + *index >= RDBUFSIZE)
 	{
 		ft_memcpy(&cirbuf[*index], buf, RDBUFSIZE - *index);
@@ -28,7 +29,9 @@ int			cirbuf_read(int fd, char *cirbuf, int size, int *index)
 	else if (nread > 0)
 	{
 		ft_memcpy(&cirbuf[*index], buf, nread);
+		DG("in cirbuf, id %d", *index);
 		*index += nread;
+		DG("in cirbuf, id %d", *index);
 	}
 	return (nread);
 }

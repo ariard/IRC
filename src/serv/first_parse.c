@@ -21,15 +21,18 @@ static void		push_buf(int i, int index, char *bufcli,
 	t_streamcmd	stream;
 
 
-//	DG("delim detect!");
+	DG("delim detect!");
 	ft_bzero(buf, 514);
+//	DG("size one %d", RDBUFSIZE - index);
 	ft_memcpy(buf, &bufcli[index], RDBUFSIZE - index);
+//	DG("size two %d", i);
 	ft_memcpy(&buf[RDBUFSIZE - index + 1], &bufcli[0], i);
-	buf[i + RDBUFSIZE - index] = 0;
+//	DG("nul is %d", i + RDBUFSIZE - index);
+	buf[i + RDBUFSIZE - index + 1] = 0;
 	ft_bzero(&bufcli[index], RDBUFSIZE - index);
 	ft_bzero(bufcli, i + 1);
 	j = -1;
-	while (!buf[++j]);
+	while (!buf[++j] && j < 514);
 //	DG("new buf %s", &buf[j]);
 	stream.buf = ft_strdup(&buf[j]);
 	stream.uid = uid;
@@ -40,6 +43,7 @@ void		first_parse(char *buffer, int index, t_server *server, char *uid)
 {
 	int		i;
 
+	DG("in first parse %d", index);
 	if (index > RDBUFSIZE || index < 0)
 		DG("ERROR : read socket");
 	(void)server;
@@ -54,4 +58,5 @@ void		first_parse(char *buffer, int index, t_server *server, char *uid)
 			i = RDBUFSIZE;
 		i--;
 	}
+	DG("after parse");
 }
