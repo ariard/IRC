@@ -2,15 +2,20 @@
 	- transmission checking (circular buff)
 	- LEAKS (script dedie)
 	- botnet (cmds implementees)
+	- msg errors divers ?
 
 #prompt :
 	- overflow
 	- underflow
 	- resize
-	- del
+	- del char
+	- prompt sender
+	- prompt for saisie
 
+#client :
+	- distinction protocols/cmds
+
+#grammar :
+	- without :sender
+	
 !! CRASH !!
-	- 3 * cmd vide
-	- "PASS hel" on ft_hash_string
-
-!! BUFFERISATION par TCP ?

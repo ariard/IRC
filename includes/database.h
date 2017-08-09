@@ -56,7 +56,7 @@ int	client_print(void *content);
 
 void	client_destroy(void *content, size_t content_size);
 
-void	user_init(t_user *user, char *msg);
+void	user_init(t_user *user, char *msg, char *uid);
 
 int	user_cmp(const void *content, const void *key);
 

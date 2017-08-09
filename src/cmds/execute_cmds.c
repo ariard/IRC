@@ -5,6 +5,7 @@ static t_cmdmatch	g_cmdmatch[] =
 	{"PASS", &cmd_pass},
 	{"NICK", &cmd_nick},
 	{"USER", &cmd_user},
+	{"PRIVMSG", &cmd_privmsg},
 	{NULL, NULL},
 };
 

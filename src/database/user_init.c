@@ -1,6 +1,6 @@
 #include "irc.h"
 
-void	user_init(t_user *user, char *nickname)
+void	user_init(t_user *user, char *nickname, char *uid)
 {
 	ft_strncpy(user->nickname, nickname, 9);
 	user->username = NULL;
@@ -8,5 +8,5 @@ void	user_init(t_user *user, char *nickname)
 	user->servername = NULL;
 	user->realname = NULL;
 	user->mode = 0;
-	user->local_uid = 0;
+	user->local_uid = uid;
 }

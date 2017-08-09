@@ -10,6 +10,7 @@ static t_ansmatch	g_ansmatch[] =
 	{"462", &err_alreadyregistered},
 	{"600", &err_lengpass},
 	{"601", &err_registerorder},
+	{"650", &rpl_msg},
 	{NULL, NULL}
 };
 

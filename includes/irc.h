@@ -91,6 +91,8 @@ void	first_parse(char *buffer, int index, t_server *server, char *uid);
 
 void	streamcmd_destroy(void *content, size_t size);
 
+void	broadcast(void);
+
 /* Lib Server */
 
 void	construct_msg(char *uid, t_server *server, ...);

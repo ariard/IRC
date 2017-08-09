@@ -52,6 +52,7 @@ cli/send_buf.c\
 cli/terminal.c\
 cmds/cmd_nick.c\
 cmds/cmd_pass.c\
+cmds/cmd_privmsg.c\
 cmds/cmds_user.c\
 cmds/execute_cmds.c\
 database/client_cmp.c\
@@ -82,6 +83,7 @@ prompt/term_newline.c\
 prompt/term_put.c\
 prompt/term_up.c\
 serv/accept_cli.c\
+serv/broadcast.c\
 serv/cirbuf_read.c\
 serv/construct_msg.c\
 serv/daemon.c\
@@ -90,6 +92,7 @@ serv/init_server.c\
 serv/loop.c\
 serv/manage_cmds.c\
 serv/read_sockets.c\
+serv/rpl_msg.c\
 serv/server.c\
 serv/sockets.c\
 serv/write_sockets.c

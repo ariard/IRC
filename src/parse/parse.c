@@ -59,7 +59,7 @@ static void		morph_tokens(t_token *sym, t_token *top)
 {
 	if (top->type == PREFIX && sym->type == SPACE)
 		sym->type = SPACE_PREFIX;
-}	
+}
 
 int			parse(t_list **tokens, t_cmd *cmd)
 {
@@ -70,7 +70,6 @@ int			parse(t_list **tokens, t_cmd *cmd)
 
 	stack = NULL;
 	init_stack(&stack);
-	DG("stack init");
 	while (tokens && *tokens)
 	{
 		i = -1;
@@ -84,7 +83,6 @@ int			parse(t_list **tokens, t_cmd *cmd)
 			if (sym->type == g_parsematch[i].sym 
 				&& top->type == g_parsematch[i].top)
 			{
-	//			DG("match");
 				if (g_parsematch[i].newtype)
 					shift(g_parsematch[i].newtype, stack->content, sym, tokens);
 				else

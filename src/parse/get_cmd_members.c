@@ -15,7 +15,7 @@ void		get_cmd_members(t_list **stack, t_cmd *cmd)
 		else if (token->type == CMD)
 			cmd->cmd = ft_strtrim(token->value);
 		else if (token->type == PARAM)
-			ft_lstadd(&cmd->params, ft_lstnew(token->value, sizeof(ft_strlen(token->value))));
+			ft_lstadd(&cmd->params, ft_lstnew(token->value, ft_strlen(token->value)));
 		token_destroy((*stack)->content, 0);
 		free(ft_lst_pop(stack));
 	}

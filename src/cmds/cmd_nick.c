@@ -24,7 +24,7 @@ void	cmd_nick(t_cmd *cmd, t_server *server)
 	client->local_name = nickname;
 	if (!(elem = hashtab_lookup(&server->users, client->local_name, &user_cmp)))
 	{
-		user_init(&user, nickname);
+		user_init(&user, nickname, client->uid);
 		hashtab_insert(&server->users, ft_lstnew(&user, sizeof(t_user)),
 			nickname, user_cmp);
 	}
