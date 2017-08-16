@@ -37,7 +37,7 @@ write test in Python to check all is great
 
 // Others Networks Projects
 
-- channels implementations
+-  channels implementations
 -  disconnet and flow infos (PING/PONG)
 -  user queries cmd
 -  interesting implementation details

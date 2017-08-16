@@ -3,13 +3,14 @@
 void	cmd_nick(t_cmd *cmd, t_server *server)
 {
 	t_user		user;
-	char		*local_nickname;
+//	char		*local_nickname;
 	char		*nickname;
 	t_list		*elem;
 	t_client	*client;
 	
-	if ((elem = hashtab_lookup(&server->clients, cmd->uid, &client_cmp)))
-		local_nickname = (char *)((t_client *)elem->content)->local_name;
+//	if ((elem = hashtab_lookup(&server->clients, cmd->uid, &client_cmp)))
+//		local_nickname = (char *)((t_client *)elem->content)->local_name;
+	elem = hashtab_lookup(&server->clients, cmd->uid, &client_cmp);
 	if (!(char *)((t_client *)elem->content)->password)
 		return (construct_msg(cmd->uid, server, ERR_REGISTERORDER("default")));
 	if (cmd->params)

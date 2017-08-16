@@ -7,7 +7,6 @@ void		parse_bufsocket(char *buf, t_answer *answer)
 	char	**msg;
 
 	i = -1;
-	DG("buf %s", buf);
 	while (buf[++i])
 	{
 		if (i != 0 && buf[i] == 10 && buf[i - 1] == 13)

@@ -36,9 +36,18 @@ struct	s_keymatch
 	void	(*f)(char buf[], t_prompt *prompt, int key, int sock);
 };
 
-static struct termios	save;
-static int				ttysavefd = -1;
-static enum { RESET, RAW, CBREAK } ttystate = RESET;
+struct	termios	save;
+int	ttysavefd;
+enum { RESET, RAW, CBREAK } ttystate;
+/*enum	e_ttystate
+{
+	RESET,
+	RAW,
+	CBREAK,
+};
+
+t_ttystate ttystate = RESET;
+*/
 
 # define CLIBUF		512
 

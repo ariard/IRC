@@ -31,6 +31,7 @@
 # include <term.h>
 # include <sys/ioctl.h>
 # include <stdarg.h>
+# include <errno.h>
 
 # include "types.h"
 # include "msg.h"

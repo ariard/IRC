@@ -13,8 +13,7 @@
 NAME		=	ircd client
 
 CC		=	gcc
-FLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g
-D_FLAGS		=	
+FLAGS		=	-Wall -Wextra -Werror 
 
 DELTA		=	$$(echo "$$(tput cols)-47"|bc)
 
@@ -23,6 +22,10 @@ LIBFT_LIB	=	$(LIBFT_DIR)libft.a
 LIBFT_INC	=	$(LIBFT_DIR)includes/
 
 LIBS		=	-ltermcap
+#ifeq ($(OS), Linux)
+#LIBS		+=	-static-libasan 
+#endif
+
 SRC_DIR		=	src/
 INC_DIR		=	includes/
 OBJ_DIR		=	objs/
@@ -104,8 +107,15 @@ OBJS		:=	$(filter-out $(CLI_OBJ), $(OBJS))
 NB			=	$(words $(SRC_BASE))
 INDEX		=	0
 
+
+all :	FLAGS += -fsanitize=address
 all :
 	@make -C $(LIBFT_DIR)
+	@make -j $(NAME)
+
+leaks : 
+	@make -C $(LIBFT_DIR)
+	@make fclean	
 	@make -j $(NAME)
 
 ircd : $(LIBFT_LIB) $(OBJ_DIR) $(OBJS) $(SERV_OBJ)

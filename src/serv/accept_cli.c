@@ -19,6 +19,7 @@ void		accept_cli(fd_set *allset, int s_sock, int *maxfd, t_server *server)
 	struct sockaddr_in		csin;	
 	t_client				client;
 
+	len = sizeof(struct sockaddr_in);
 	if ((clifd = accept(s_sock, (struct sockaddr *)&csin, &len)) < 0)
 		ft_usage("accept error");
 	client_init(&client, clifd, server->name);

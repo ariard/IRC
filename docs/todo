@@ -1,0 +1,21 @@
+#test : 
+	- transmission checking (circular buff)
+	- LEAKS (script dedie)
+	- botnet (cmds implementees)
+	- msg errors divers ?
+
+#prompt :
+	- overflow
+	- underflow
+	- resize
+	- del char
+	- prompt sender
+	- prompt for saisie
+
+#client :
+	- distinction protocols/cmds
+
+#grammar :
+	- without :sender
+	
+!! CRASH !!

@@ -23,6 +23,8 @@ int			tty_raw(int fd)
 {
 	struct termios	buf;
 
+	ttysavefd = -1;
+	ttystate = RESET;
 	if (ttystate != RESET)
 		return (-1);
 	if (tcgetattr(fd, &buf) < 0)
