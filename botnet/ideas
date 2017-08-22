@@ -1,0 +1,8 @@
+lance 1 serveur
+lance 3 clients, tape cmds
+dialogue entre eux
+
+
+os.run
+os.write
+(voir moulishell)

@@ -34,10 +34,9 @@ static void		push_buf(int i, int index, char *bufcli,
 	ft_bzero(bufcli, i + 1);
 	j = -1;
 	while (!buf[++j] && j < 514);
-//	DG("new buf %s", &buf[j]);
-	stream.buf = &buf[j];
+	stream.buf = ft_strdup(&buf[j]);
 	stream.uid = uid;
-	ft_lsteadd(&server->cmds, ft_lstnew(&stream, sizeof(t_streamcmd *)));
+	ft_lsteadd(&server->cmds, ft_lstnew(&stream, sizeof(stream)));
 }
 
 void		first_parse(char *buffer, int index, t_server *server, char *uid)

@@ -1,1 +1,39 @@
-[7m[35m30994[33m           terminal.c [1m[34m17 [0mcatch 2[0m
+[7m[36m 8531[33m        init_server.c [1m[34m21 [0mserver name [0m
+[7m[36m 8531[33m             server.c [1m[34m55 [0mdaemonization successful : 8531[0m
+[7m[36m 8531[33m         accept_cli.c [1m[34m31 [0mNEW CLIENT 1503441285[0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m28 [0mclient uid is 1503441285[0m
+[7m[36m 8531[33m        cirbuf_read.c [1m[34m21 [0mnread is 23[0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m42 [0mrd: :swnder PASS password
+[0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m43 [0mid : 23[0m
+[7m[36m 8531[33m        first_parse.c [1m[34m46 [0min first parse 23[0m
+[7m[36m 8531[33m        first_parse.c [1m[34m25 [0mdelim detect![0m
+[7m[36m 8531[33m        first_parse.c [1m[34m61 [0mafter parse[0m
+[7m[36m 8531[33m              lexer.c [1m[34m24 [0mcmd is :swnder PASS password[0m
+[7m[36m 8531[33m          print_cmd.c [1m[34m20 [0muid 1503441285[0m
+[7m[36m 8531[33m          print_cmd.c [1m[34m22 [0mprefix :swnder[0m
+[7m[36m 8531[33m          print_cmd.c [1m[34m24 [0mcmd PASS[0m
+[7m[36m 8531[33m          print_cmd.c [1m[34m9  [0mparam password[0m
+[7m[36m 8531[33m       execute_cmds.c [1m[34m19 [0m[PASS] vs [PASS][0m
+[7m[36m 8531[33m           cmd_pass.c [1m[34m9  [0min PASS[0m
+[7m[36m 8531[33m           cmd_pass.c [1m[34m22 [0mclient pass : password[0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m28 [0mclient uid is 1503441285[0m
+[7m[36m 8531[33m        cirbuf_read.c [1m[34m21 [0mnread is 14[0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m42 [0mrd: [0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m43 [0mid : 37[0m
+[7m[36m 8531[33m        first_parse.c [1m[34m46 [0min first parse 37[0m
+[7m[36m 8531[33m        first_parse.c [1m[34m25 [0mdelim detect![0m
+[7m[36m 8531[33m        first_parse.c [1m[34m61 [0mafter parse[0m
+[7m[36m 8531[33m              lexer.c [1m[34m24 [0mcmd is :sender NICK[0m
+[7m[36m 8531[33m          print_cmd.c [1m[34m20 [0muid 1503441285[0m
+[7m[36m 8531[33m          print_cmd.c [1m[34m22 [0mprefix :sender[0m
+[7m[36m 8531[33m          print_cmd.c [1m[34m24 [0mcmd NICK[0m
+[7m[36m 8531[33m       execute_cmds.c [1m[34m19 [0m[PASS] vs [NICK][0m
+[7m[36m 8531[33m       execute_cmds.c [1m[34m19 [0m[NICK] vs [NICK][0m
+[7m[36m 8531[33m      construct_msg.c [1m[34m32 [0mretour buf : : 431  default
+[0m
+[7m[36m 8531[33m      write_sockets.c [1m[34m29 [0mwriting client socket is 5 with : 431  default
+[0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m28 [0mclient uid is 1503441285[0m
+[7m[36m 8531[33m        cirbuf_read.c [1m[34m21 [0mnread is 0[0m
+[7m[36m 8531[33m       read_sockets.c [1m[34m34 [0mCLOSED 1503441285[0m

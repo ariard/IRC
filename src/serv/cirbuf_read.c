@@ -29,9 +29,7 @@ int			cirbuf_read(int fd, char *cirbuf, int size, int *index)
 	else if (nread > 0)
 	{
 		ft_memcpy(&cirbuf[*index], buf, nread);
-		DG("in cirbuf, id %d", *index);
 		*index += nread;
-		DG("in cirbuf, id %d", *index);
 	}
 	return (nread);
 }

@@ -21,6 +21,7 @@ void			lexer(t_list **tokens, t_list *top)
 	t_token		token;
 
 	cmd = (char *)((t_streamcmd *)top->content)->buf;
+	DG("cmd is %s", cmd);
 	while (*cmd)
 	{
 		i = -1;

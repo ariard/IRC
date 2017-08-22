@@ -21,17 +21,16 @@ static void		init_stack(t_list **stack)
 	t_token	token;
 
 	token.type = TERM;
-	token.value = 0;
+	token.value = NULL;
 	ft_lstadd(stack, ft_lstnew(&token, sizeof(token)));
 }
 
 static void		shift(int newtype, void *content, t_token *sym, t_list **tokens)
 {
 	t_token		*top;
-	char	*tmp;
+	char		*tmp;
 	t_list		*elem;
 
-//	DG("shift");
 	if (!tokens || !*tokens  )
 		return ; 
 	top = content;
@@ -75,9 +74,6 @@ int			parse(t_list **tokens, t_cmd *cmd)
 		i = -1;
 		sym = (*tokens)->content;
 		top = stack->content;
-//		print_tokens(sym, NULL);
-//		DG("vs");
-//		print_tokens(top, NULL);
 		morph_tokens(sym, top);
 		while (g_parsematch[++i].sym != ERROR)
 			if (sym->type == g_parsematch[i].sym 
@@ -90,7 +86,11 @@ int			parse(t_list **tokens, t_cmd *cmd)
 				break;
 			}
 		if (g_parsematch[i].sym == ERROR)
+		{
+			ft_lstdel(tokens, &token_destroy);
+			ft_lstdel(&stack, &token_destroy);
 			return (-1); // ERROR
+		}
 	}
 	get_cmd_members(&stack, cmd);
 	return (0);

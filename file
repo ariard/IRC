@@ -1,0 +1,74 @@
+==32287== Memcheck, a memory error detector
+==32287== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==32287== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==32287== Command: ./ircd 4241
+==32287== 
+==32287== Conditional jump or move depends on uninitialised value(s)
+==32287==    at 0x403195: print_cmd (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x40500A: manage_cmds (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x404F2A: server_loop (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x409093: main (in /home/user/Projects/IRC/ircd)
+==32287== 
+==32287== Conditional jump or move depends on uninitialised value(s)
+==32287==    at 0x4031EF: print_cmd (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x40500A: manage_cmds (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x404F2A: server_loop (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x409093: main (in /home/user/Projects/IRC/ircd)
+==32287== 
+==32287== Conditional jump or move depends on uninitialised value(s)
+==32287==    at 0x403249: print_cmd (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x40500A: manage_cmds (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x404F2A: server_loop (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x409093: main (in /home/user/Projects/IRC/ircd)
+==32287== 
+==32287== Conditional jump or move depends on uninitialised value(s)
+==32287==    at 0x407392: ft_str_conversion (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x40788D: ft_transform (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x405CCA: ft_vasprintf (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x405D3A: ft_vdprintf (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x405B36: ft_dprintf (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x402C76: execute_cmd (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x40501D: manage_cmds (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x404F2A: server_loop (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x409093: main (in /home/user/Projects/IRC/ircd)
+==32287== 
+==32287== Conditional jump or move depends on uninitialised value(s)
+==32287==    at 0x406B98: ft_strcmp (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x402C9F: execute_cmd (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x40501D: manage_cmds (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x404F2A: server_loop (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x409093: main (in /home/user/Projects/IRC/ircd)
+==32287== 
+==32287== 
+==32287== Process terminating with default action of signal 2 (SIGINT)
+==32287==    at 0x51578E3: __select_nocancel (in /usr/lib64/libc-2.22.so)
+==32287==    by 0x4055D2: manage_sockets (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x404F1B: server_loop (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x409093: main (in /home/user/Projects/IRC/ircd)
+==32287== 
+==32287== HEAP SUMMARY:
+==32287==     in use at exit: 6,497 bytes in 5 blocks
+==32287==   total heap usage: 866 allocs, 861 frees, 49,145 bytes allocated
+==32287== 
+==32287== 97 bytes in 1 blocks are definitely lost in loss record 1 of 5
+==32287==    at 0x4C28BF6: malloc (vg_replace_malloc.c:299)
+==32287==    by 0x406295: ft_malloc (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x4062CD: ft_memalloc (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x4060A0: ft_lstnew (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x4040C9: accept_cli (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x405674: manage_sockets (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x404F1B: server_loop (in /home/user/Projects/IRC/ircd)
+==32287==    by 0x409093: main (in /home/user/Projects/IRC/ircd)
+==32287== 
+==32287== LEAK SUMMARY:
+==32287==    definitely lost: 97 bytes in 1 blocks
+==32287==    indirectly lost: 0 bytes in 0 blocks
+==32287==      possibly lost: 0 bytes in 0 blocks
+==32287==    still reachable: 6,400 bytes in 4 blocks
+==32287==         suppressed: 0 bytes in 0 blocks
+==32287== Reachable blocks (those to which a pointer was found) are not shown.
+==32287== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==32287== 
+==32287== For counts of detected and suppressed errors, rerun with: -v
+==32287== Use --track-origins=yes to see where uninitialised values come from
+==32287== ERROR SUMMARY: 12 errors from 6 contexts (suppressed: 0 from 0)

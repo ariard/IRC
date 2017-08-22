@@ -31,6 +31,7 @@ to-do :
 // The End //
 write test in Python to check all is great
 
+ - config servers
  - connect server-to-server, check if disconnect (PASS, SERVER)
  - align global state information (SERVER, NICK)
  - passing informations from c2c on different servers (routing algorithms)
